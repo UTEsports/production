@@ -1,0 +1,94 @@
+body {
+    font-family: 'Rajdhani', sans-serif;
+    text-align: center;
+    color: #000;
+  }
+
+  .rajdhani-light {
+    font-family: "Rajdhani", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+  }
+  
+  .rajdhani-regular {
+    font-family: "Rajdhani", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  .rajdhani-medium {
+    font-family: "Rajdhani", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+  }
+  
+  .rajdhani-semibold {
+    font-family: "Rajdhani", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+  }
+  
+  .rajdhani-bold {
+    font-family: "Rajdhani", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+  }
+  
+  
+  form {
+    margin: 20px auto;
+    width: 300px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .stack-container {
+    position: relative;
+    width: 1920px; /* Adjust width as needed */
+    height: 1080px; /* Adjust height as needed */
+
+  }
+  /* Style for text */
+  .caster-1-name {
+    position: absolute;
+    color:#fff;
+    top: 625px; /* Adjust the top position as needed */
+    left: 300px; /* Adjust the left position as needed */
+    z-index: 1;
+    font-size: 36px;
+  }
+  .caster-1-tag {
+    position: absolute;
+    color:#fff;
+    top: 670px; /* Adjust the top position as needed */
+    left: 300px; /* Adjust the left position as needed */
+    z-index: 1;
+    font-size: 24px;
+  }
+  /* Style for images */
+  .stacked-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  

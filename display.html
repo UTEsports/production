@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+  <!-- Container for stacking -->
+  <div class="stack-container">
+    <div id="caster-1-name" class="caster-1-name rajdhani-medium"></div>
+    <div id="caster-1-tag" class="caster-1-tag rajdhani-regular"></div>
+    <script>
+      // Retrieve form data from localStorage
+      var c1name = localStorage.getItem('c1name');
+      var c1tag = localStorage.getItem('c1tag');
+      var c2name = localStorage.getItem('c2name');
+      var c2tag = localStorage.getItem('c2tag');
+
+      // Display data
+      var displayDiv1 = document.getElementById('caster-1-name');
+      displayDiv1.innerHTML = '<p>' + c1name + '</p>';
+
+      var displayDiv2 = document.getElementById('caster-1-tag');
+      displayDiv2.innerHTML = '<p>' + c1tag + '</p>';
+    </script>
+
+    <!-- Stack images inside the container -->
+    <img class="stacked-image" src="StreamPackage2.0\casters\casters_cam_box.png" alt="Image Description">
+    <img class="stacked-image" src="StreamPackage2.0\casters\casters_cam_namebox.png" alt="Image Description">
+    <img class="stacked-image" src="StreamPackage2.0\casters\casters_infobox.png" alt="Image Description">
+    <img class="stacked-image" src="StreamPackage2.0\casters\casters_vs_1.png" alt="Image Description">
+  </div>`
+</body>
+</html>
