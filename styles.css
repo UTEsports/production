@@ -2,6 +2,8 @@ body {
     font-family: 'Rajdhani', sans-serif;
     text-align: center;
     color: #000;
+    font-size: xx-large;
+    background-color: white;
   }
 
   .rajdhani-light {
@@ -33,7 +35,6 @@ body {
     font-weight: 700;
     font-style: normal;
   }
-  
   
   form {
     margin: 20px auto;
@@ -85,6 +86,24 @@ body {
     z-index: 1;
     font-size: 24px;
   }
+
+  .caster-2-name {
+    position: absolute;
+    color:#fff;
+    top: 625px; /* Adjust the top position as needed */
+    left: 1000px; /* Adjust the left position as needed */
+    z-index: 1;
+    font-size: 36px;
+  }
+  .caster-2-tag {
+    position: absolute;
+    color:#fff;
+    top: 670px; /* Adjust the top position as needed */
+    left: 1000px; /* Adjust the left position as needed */
+    z-index: 1;
+    font-size: 24px;
+  }
+
   /* Style for images */
   .stacked-image {
     position: absolute;
@@ -92,3 +111,11 @@ body {
     left: 0;
   }
   
+  .big-dropdown {
+    font-size: 16px;
+    padding: 10px;
+}
+
+.wallpaper{
+  z-index: -1;
+}
