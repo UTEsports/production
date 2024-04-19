@@ -4,6 +4,7 @@ body {
     color: #000;
     font-size: xx-large;
     background-color: white;
+    overflow: auto;
   }
 
   .rajdhani-light {
@@ -65,6 +66,7 @@ body {
 
   .stack-container {
     position: relative;
+    overflow: auto;
     width: 1920px; /* Adjust width as needed */
     height: 1080px; /* Adjust height as needed */
 
