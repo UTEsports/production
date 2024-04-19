@@ -23,6 +23,4 @@ document.getElementById('myForm').addEventListener('submit', function(e) {
   }
   localStorage.setItem('vsImagePath', imagePath); // Store the file path
 
-  // Redirect to display page
-  window.location.href = 'display.html';
 });
