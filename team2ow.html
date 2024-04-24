@@ -11,41 +11,89 @@
 <body>
   <!-- Container for stacking -->
 <div class="stack-container">
+  <img class="roster-logo" src="uteslogo.png">
+  <div class="roster-team rajdhani-bold" id="roster-team-1">
+    TEAM NAME
+  </div>
+  <img class="stacked-image" src="assets\roster\roster_box_redteam.png">
+  <img class="stacked-image" src="assets\roster\roster_role_overwatch.png">
 
-    <div id="caster-1-name" class="caster-1-name rajdhani-medium"></div>
-    <div id="caster-1-tag" class="caster-1-tag rajdhani-regular"></div>
-    <div id="caster-2-name" class="caster-2-name rajdhani-medium"></div>
-    <div id="caster-2-tag" class="caster-2-tag rajdhani-regular"></div>
+  <div class="rajdhani-bold">
+    <img id="roster-img-1">
+    <div id="roster-name-1" style="color: white;"></div>
+  </div>
+  
+  <div class="rajdhani-bold">
+    <img id="roster-img-2">
+    <div id="roster-name-2" style="color: white;">afdh</div>
+  </div>
+  
+  <div class="rajdhani-bold">
+    <img id="roster-img-3">
+    <div id="roster-name-3" style="color: white;"></div>
+  </div>
+  
+  <div class="rajdhani-bold">
+    <img id="roster-img-4">
+    <div id="roster-name-4" style="color: white;"></div>
+  </div>
+  
+  <di class="rajdhani-bold"v>
+    <img id="roster-img-5">
+    <div id="roster-name-5" style="color: white;"></div>
+  </div>
 
-    <img class="stacked-image" src="StreamPackage2.0\casters\casters_cam_box.png" alt="Image Description">
-    <img class="stacked-image" src="StreamPackage2.0\casters\casters_cam_namebox.png" alt="Image Description">
-    <img class="stacked-image" src="StreamPackage2.0\casters\casters_infobox.png" alt="Image Description">
-    
-    <script>
-    // Retrieve form data from localStorage
-    var c1name = localStorage.getItem('c1name');
-    var c1tag = localStorage.getItem('c1tag');
-    var c2name = localStorage.getItem('c2name');
-    var c2tag = localStorage.getItem('c2tag');
-    var vs = localStorage.getItem('vsImagePath'); // Corrected key
+  <script>
+    retrieveHeroes();
+  // Retrieve form data from localStorage
+    function retrieveHeroes(){
+      var hero1 = localStorage.getItem('player6_hero');
+      var hero2 = localStorage.getItem('player7_hero');
+      var hero3 = localStorage.getItem('player8_hero');
+      var hero4 = localStorage.getItem('player9_hero');
+      var hero5 = localStorage.getItem('player10_hero');
 
-    // Display data
-    var c1nDiv = document.getElementById('caster-1-name');
-    c1nDiv.innerHTML = '<p>' + c1name + '</p>';
+      var name1 = localStorage.getItem('player6_name_ow');
+      var name2 = localStorage.getItem('player7_name_ow');
+      var name3 = localStorage.getItem('player8_name_ow');
+      var name4 = localStorage.getItem('player9_name_ow');
+      var name5 = localStorage.getItem('player10_name_ow');
 
-    var c1tDiv = document.getElementById('caster-1-tag');
-    c1tDiv.innerHTML = '<p>' + c1tag + '</p>';
+      var h1 = document.getElementById('roster-img-1');
+      h1.src = "assets\\ow_heroes\\" + hero1 +".png";
 
-    var c2nDiv = document.getElementById('caster-2-name');
-    c2nDiv.innerHTML = '<p>' + c2name + '</p>';
+      var h2 = document.getElementById('roster-img-2');
+      h2.src = "assets\\ow_heroes\\" + hero2 +".png";
 
-    var c2tDiv = document.getElementById('caster-2-tag');
-    c2tDiv.innerHTML = '<p>' + c2tag + '</p>';
+      var h3 = document.getElementById('roster-img-3');
+      h3.src = "assets\\ow_heroes\\" + hero3 +".png";
 
-    var vsElement = document.getElementById('vs-asset');
-    vsElement.src = vs; // Set the src attribute
+      var h4 = document.getElementById('roster-img-4');
+      h4.src = "assets\\ow_heroes\\" + hero4 +".png";
 
-    </script>
+      var h5 = document.getElementById('roster-img-5');
+      h5.src = "assets\\ow_heroes\\" + hero5 +".png";
+
+      var n1 = document.getElementById('roster-name-1');
+      n1.innerHTML = name1;
+
+      var n2 = document.getElementById('roster-name-2');
+      n2.innerHTML = name2;
+
+      var n3 = document.getElementById('roster-name-3');
+      n3.innerHTML = name3;
+
+      var n4 = document.getElementById('roster-name-4');
+      n4.innerHTML = name4;
+
+      var n5 = document.getElementById('roster-name-5');
+      n5.innerHTML = name5;
+    }
+
+    setInterval(function(){
+      retrieveHeroes();
+    }, 1 * 1000)
+  </script>
 </div>
 </body>
 

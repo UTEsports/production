@@ -1,32 +1,245 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>UTES Valorant Controller</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <h1>UTES Valorant Controller</h1>
-  
-  <div class="grouping">
-    <h2>Edit</h2>
-    <button class="big-button" onclick="window.location.href='edit-casters.html'">EDIT GENERAL INFO</button>
-    <button class="big-button" onclick="window.location.href='edit-casters.html'">EDIT CASTER SCREEN</button>
-    <button class="big-button" onclick="window.location.href='edit-casters.html'">EDIT IN-GAME OVERLAY</button>
-    <button class="big-button" onclick="window.location.href='edit-casters.html'">EDIT MAP SCREEN</button>
-    <button class="big-button" onclick="window.location.href='edit-casters.html'">EDIT TEAMS SCREEN</button>
-  </div>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+<link rel="stylesheet" href="styles.css">
 
-  <div class="grouping">
-    <h2>Display</h2>
-    <button class="big-button" onclick="window.location.href='edit-casters.html'">GENERAL INFO</button>
-    <button class="big-button" onclick="window.location.href='edit-casters.html'">CASTER SCREEN</button>
-    <button class="big-button" onclick="window.location.href='edit-casters.html'">IN-GAME OVERLAY</button>
-    <button class="big-button" onclick="window.location.href='edit-casters.html'">MAP SCREEN</button>
-    <button class="big-button" onclick="window.location.href='edit-casters.html'">TEAMS SCREEN</button>
-  </div>
+<title>Overwatch Controller</title>
+<style>
+  /* Style for collapsible section header */
+  .collapsible, .gen-info {
+    background-color: #3498db;
+    color: #f1f1f1;
+    cursor: pointer;
+    padding: 10px;
+    width: calc(100% - 40px); /* Adjusted width to accommodate arrow */
+    border: none;
+    text-align: left;
+    outline: none;
+    position: relative; /* Added position relative for arrow positioning */
+    margin-top: 10px;
+  }
+
+  /* Style for active collapsible section */
+  .active, .collapsible:hover {
+    background-color: #3e8e41;
+  }
+
+  /* Style for content inside collapsible section */
+  .content {
+    padding: 0 18px;
+    display: none;
+    overflow: hidden;
+    background-color: #f1f1f1;
+  }
+
+  /* Style for dropdown arrow icon */
+  .dropdown-icon {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+  }
+
+  .input-container {
+    margin-bottom: 18px;
+  }
+
+  /* Adjust form width and margin */
+  form {
+    width: 20%; /* Adjust the width as needed */
+    margin: 0 auto; /* Center align the form */
+  }
+
+  /* Style for back button */
+  .back-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background-color: #3498db;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    text-decoration: none;
+    font-family: 'Rajdhani', sans-serif;
+  }
+</style>
+</head>
+<body style="background-color: #f1f1f1;">
+
+<a href="index.html" class="back-button">Back</a> <!-- Back button -->
+
+<h1>Overwatch Controller</h1>
+
+<button class="gen-info rajdhani-medium" style="font-size: xx-large;">General Information (Casters, Team Info, Break Screen)</button>
+
+<button class="collapsible rajdhani-medium" style="font-size: xx-large;">Match Information
+  <span class="dropdown-icon">&#9660;</span> <!-- Downward arrow icon -->
+</button>
+<div class="content">
+  <p>Content for Section 1 goes here...</p>
+</div>
+
+<button class="collapsible rajdhani-medium" style="font-size: xx-large;">Roster Information
+  <span class="dropdown-icon">&#9660;</span> <!-- Downward arrow icon -->
+</button>
+<div>
+  <button type="button" onclick="resetForm()" class="reset" style="font-size: xx-large;">Reset</button> <!-- Reset button -->
+  <div class="content" style="display: flex; justify-content: center; align-items: center;">
   
-  <img src="https://www.solidbackgrounds.com/images/1920x1080/1920x1080-white-solid-color-background.jpg" class="stacked-image wallpaper">
+    <form name="team1" method="post" onsubmit="saveData('team1', event)">
+      <h3>Team 1</h3>
+      <div class="player-info">
+        <label for="player1_name_1">Player 1 Name:</label>
+        <input type="text" id="player1_name_ow" name="player1_name_ow">
+        <select class="js-example-basic-single" name="player1_hero"></select>
+      </div><br>
+      <div class="player-info">
+        <label for="player2_name_1">Player 2 Name:</label>
+        <input type="text" id="player2_name_ow" name="player2_name_ow">
+        <select class="js-example-basic-single" name="player2_hero"></select>
+      </div><br>
+      <div class="player-info">
+        <label for="player3_name_1">Player 3 Name:</label>
+        <input type="text" id="player3_name_ow" name="player3_name_ow">
+        <select class="js-example-basic-single" name="player3_hero"></select>
+      </div><br>
+      <div class="player-info">
+        <label for="player4_name_1">Player 4 Name:</label>
+        <input type="text" id="player4_name_ow" name="player4_name_ow">
+        <select class="js-example-basic-single" name="player4_hero"></select>
+      </div><br>
+      <div class="player-info">
+        <label for="player5_name_1">Player 5 Name:</label>
+        <input type="text" id="player5_name_ow" name="player5_name_ow">
+        <select class="js-example-basic-single" name="player5_hero"></select>
+      </div><br>
+      <input type="submit" value="Submit">
+    </form>
+    
+    
+    <form name="team2" method="post" onsubmit="saveData('team2', event)">
+      <h3>Team 2</h3>
+      <div class="player-info">
+        <label for="player6_name_1">Player 1 Name:</label>
+        <input type="text" id="player6_name_ow" name="player6_name_ow">
+        <select class="js-example-basic-single" name="player6_hero"></select>
+      </div><br>
+      <div class="player-info">
+        <label for="player7_name_1">Player 2 Name:</label>
+        <input type="text" id="player7_name_ow" name="player7_name_ow">
+        <select class="js-example-basic-single" name="player7_hero"></select>
+      </div><br>
+      <div class="player-info">
+        <label for="player8_name_1">Player 3 Name:</label>
+        <input type="text" id="player8_name_ow" name="player8_name_ow">
+        <select class="js-example-basic-single" name="player8_hero"></select>
+      </div><br>
+      <div class="player-info">
+        <label for="player9_name_1">Player 4 Name:</label>
+        <input type="text" id="player9_name_ow" name="player9_name_ow">
+        <select class="js-example-basic-single" name="player9_hero"></select>
+      </div><br>
+      <div class="player-info">
+        <label for="player10_name_1">Player 5 Name:</label>
+        <input type="text" id="player10_name_ow" name="player10_name_ow">
+        <select class="js-example-basic-single" name="player10_hero"></select>
+      </div><br>
+      <input type="submit" value="Submit" id="submit">
+    </form>
+  </div>
+</div>
+
+
+<button class="collapsible rajdhani-medium" style="font-size: xx-large;">Map Information
+  <span class="dropdown-icon">&#9660;</span> <!-- Downward arrow icon -->
+</button>
+<div class="content">
+  <p>Content for Section 3 goes here...</p>
+</div>
+
+<script>
+  var coll = document.getElementsByClassName("collapsible");
+  var i;
+
+  for (i = 0; i < coll.length; i++) {
+    coll[i].addEventListener("click", function() {
+      this.classList.toggle("active");
+      var content = this.nextElementSibling;
+      if (content.style.display === "block") {
+        content.style.display = "none";
+      } else {
+        content.style.display = "block";
+      }
+    });
+  }
+// Predefined data for hero options
+const heroes = [
+  "ANA", "ASHE", "BAPTISTE", "BASTION", "BRIGITTE", "CASSIDY", "DVA",
+  "DOOMFIST", "ECHO", "GENJI", "HANZO", "ILLARI", "JUNKERQUEEN", "JUNKRAT", "KIRIKO",
+  "LIFEWEAVER", "LUCIO", "MAUGA", "MEI", "MERCY", "MOIRA", "ORISA", "PHARAH", "RAMATTRA",
+  "REAPER", "REINHARDT", "ROADHOG", "SIGMA", "SOJOURN", "SOLDIER76", "SOMBRA", "SYMMETRA",
+  "TORBJORN", "TRACER", "VENTURE", "WIDOWMAKER", "WINSTON", "WRECKINGBALL", "ZARYA", "ZENYATTA"
+];
+
+// Populate select options for all players
+document.querySelectorAll(".js-example-basic-single").forEach(select => {
+  heroes.forEach(hero => {
+    const option = new Option(hero, hero);
+    select.add(option);
+  });
+});
+
+// Initialize Select2 for all select elements with the class 'js-example-basic-single'
+$('.js-example-basic-single').select2();
+
+function resetForm() {
+  document.querySelectorAll('input[type="text"]').forEach(input => {
+    input.value = ''; // Clear input fields
+  });
+  document.querySelectorAll('select').forEach(select => {
+    select.value = ''; // Reset select boxes
+    $(select).trigger('change.select2'); // Trigger change event for Select2
+  });
+}
+
+function saveData(formName, event) {
+    event.preventDefault(); // Prevent the form from submitting
+
+    // Get the form element
+    var form = document.forms[formName];
+
+    // Loop through each select element inside the form
+    var selects = form.querySelectorAll('select');
+    selects.forEach(function(select) {
+      // Get the name of the select element
+      var selectName = select.getAttribute('name');
+      // Get the selected value of the select element
+      var selectedValue = select.value;
+      // Save the selected value in local storage
+      localStorage.setItem(selectName, selectedValue);
+    });
+
+    // Optionally, you can also save the player names if needed
+    // For example:
+    var playerNames = form.querySelectorAll('input[type="text"]');
+    playerNames.forEach(function(input) {
+      localStorage.setItem(input.getAttribute('name'), input.value);
+    });
+
+    // Optionally, you can redirect to another page or perform any other action
+  }
+
+</script>
+
 </body>
 </html>
