@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+  <!-- Container for stacking -->
+<div class="stack-container">
+  <img class="roster-logo" src="uteslogo.png">
+  <div class="roster-team rajdhani-bold" id="roster-team-1">
+    TEAM NAME
+  </div>
+  <img class="stacked-image" src="assets\roster\roster_box_blueteam.png">
+  <img class="stacked-image" src="assets\roster\roster_role_overwatch.png">
+
+  <div class="rajdhani-bold">
+    <img id="roster-img-1">
+    <div id="roster-name-1" style="color: white;"></div>
+  </div>
+  
+  <div class="rajdhani-bold">
+    <img id="roster-img-2">
+    <div id="roster-name-2" style="color: white;">afdh</div>
+  </div>
+  
+  <div class="rajdhani-bold">
+    <img id="roster-img-3">
+    <div id="roster-name-3" style="color: white;"></div>
+  </div>
+  
+  <div class="rajdhani-bold">
+    <img id="roster-img-4">
+    <div id="roster-name-4" style="color: white;"></div>
+  </div>
+  
+  <di class="rajdhani-bold"v>
+    <img id="roster-img-5">
+    <div id="roster-name-5" style="color: white;"></div>
+  </div>
+
+  <script>
+    retrieveHeroes();
+  // Retrieve form data from localStorage
+    function retrieveHeroes(){
+      var hero1 = localStorage.getItem('player1_hero');
+      var hero2 = localStorage.getItem('player2_hero');
+      var hero3 = localStorage.getItem('player3_hero');
+      var hero4 = localStorage.getItem('player4_hero');
+      var hero5 = localStorage.getItem('player5_hero');
+
+      var name1 = localStorage.getItem('player1_name_ow');
+      var name2 = localStorage.getItem('player2_name_ow');
+      var name3 = localStorage.getItem('player3_name_ow');
+      var name4 = localStorage.getItem('player4_name_ow');
+      var name5 = localStorage.getItem('player5_name_ow');
+
+      var h1 = document.getElementById('roster-img-1');
+      h1.src = "assets\\ow_heroes\\" + hero1 +".png";
+
+      var h2 = document.getElementById('roster-img-2');
+      h2.src = "assets\\ow_heroes\\" + hero2 +".png";
+
+      var h3 = document.getElementById('roster-img-3');
+      h3.src = "assets\\ow_heroes\\" + hero3 +".png";
+
+      var h4 = document.getElementById('roster-img-4');
+      h4.src = "assets\\ow_heroes\\" + hero4 +".png";
+
+      var h5 = document.getElementById('roster-img-5');
+      h5.src = "assets\\ow_heroes\\" + hero5 +".png";
+
+      var n1 = document.getElementById('roster-name-1');
+      n1.innerHTML = name1;
+
+      var n2 = document.getElementById('roster-name-2');
+      n2.innerHTML = name2;
+
+      var n3 = document.getElementById('roster-name-3');
+      n3.innerHTML = name3;
+
+      var n4 = document.getElementById('roster-name-4');
+      n4.innerHTML = name4;
+
+      var n5 = document.getElementById('roster-name-5');
+      n5.innerHTML = name5;
+    }
+
+    setInterval(function(){
+      retrieveHeroes();
+    }, 1 * 1000)
+  </script>
+</div>
+</body>
+
+</html>

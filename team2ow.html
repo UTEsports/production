@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+  <!-- Container for stacking -->
+<div class="stack-container">
+
+    <div id="caster-1-name" class="caster-1-name rajdhani-medium"></div>
+    <div id="caster-1-tag" class="caster-1-tag rajdhani-regular"></div>
+    <div id="caster-2-name" class="caster-2-name rajdhani-medium"></div>
+    <div id="caster-2-tag" class="caster-2-tag rajdhani-regular"></div>
+
+    <img class="stacked-image" src="StreamPackage2.0\casters\casters_cam_box.png" alt="Image Description">
+    <img class="stacked-image" src="StreamPackage2.0\casters\casters_cam_namebox.png" alt="Image Description">
+    <img class="stacked-image" src="StreamPackage2.0\casters\casters_infobox.png" alt="Image Description">
+    
+    <script>
+    // Retrieve form data from localStorage
+    var c1name = localStorage.getItem('c1name');
+    var c1tag = localStorage.getItem('c1tag');
+    var c2name = localStorage.getItem('c2name');
+    var c2tag = localStorage.getItem('c2tag');
+    var vs = localStorage.getItem('vsImagePath'); // Corrected key
+
+    // Display data
+    var c1nDiv = document.getElementById('caster-1-name');
+    c1nDiv.innerHTML = '<p>' + c1name + '</p>';
+
+    var c1tDiv = document.getElementById('caster-1-tag');
+    c1tDiv.innerHTML = '<p>' + c1tag + '</p>';
+
+    var c2nDiv = document.getElementById('caster-2-name');
+    c2nDiv.innerHTML = '<p>' + c2name + '</p>';
+
+    var c2tDiv = document.getElementById('caster-2-tag');
+    c2tDiv.innerHTML = '<p>' + c2tag + '</p>';
+
+    var vsElement = document.getElementById('vs-asset');
+    vsElement.src = vs; // Set the src attribute
+
+    </script>
+</div>
+</body>
+
+</html>
