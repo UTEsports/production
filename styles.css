@@ -49,7 +49,7 @@ body {
   }
   
   input, select {
-    width: 500px;
+    width: 150px;
     padding: 8px;
     margin-bottom: 10px;
     border: 1px solid #ccc;
