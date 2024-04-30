@@ -11,9 +11,8 @@
 <body>
   <!-- Container for stacking -->
 <div class="stack-container">
-  <img class="roster-logo" src="uteslogo.png">
+  <img class="roster-logo" id="t1rosterlogo">
   <div class="roster-team rajdhani-bold" id="roster-team-1">
-    TEAM NAME
   </div>
   <img class="stacked-image" src="assets\roster\roster_box_blueteam.png">
   <img class="stacked-image" src="assets\roster\roster_role_overwatch.png">
@@ -25,7 +24,7 @@
   
   <div class="rajdhani-bold">
     <img id="roster-img-2">
-    <div id="roster-name-2" style="color: white;">afdh</div>
+    <div id="roster-name-2" style="color: white;"></div>
   </div>
   
   <div class="rajdhani-bold">
@@ -47,17 +46,25 @@
     retrieveHeroes();
   // Retrieve form data from localStorage
     function retrieveHeroes(){
-      var hero1 = localStorage.getItem('player1_hero');
-      var hero2 = localStorage.getItem('player2_hero');
-      var hero3 = localStorage.getItem('player3_hero');
-      var hero4 = localStorage.getItem('player4_hero');
-      var hero5 = localStorage.getItem('player5_hero');
+      var hero1 = localStorage.getItem('t1roster_player1_hero');
+      var hero2 = localStorage.getItem('t1roster_player2_hero');
+      var hero3 = localStorage.getItem('t1roster_player3_hero');
+      var hero4 = localStorage.getItem('t1roster_player4_hero');
+      var hero5 = localStorage.getItem('t1roster_player5_hero');
 
-      var name1 = localStorage.getItem('player1_name_ow');
-      var name2 = localStorage.getItem('player2_name_ow');
-      var name3 = localStorage.getItem('player3_name_ow');
-      var name4 = localStorage.getItem('player4_name_ow');
-      var name5 = localStorage.getItem('player5_name_ow');
+      var name1 = localStorage.getItem('t1roster_player1_name_ow');
+      var name2 = localStorage.getItem('t1roster_player2_name_ow');
+      var name3 = localStorage.getItem('t1roster_player3_name_ow');
+      var name4 = localStorage.getItem('t1roster_player4_name_ow');
+      var name5 = localStorage.getItem('t1roster_player5_name_ow');
+
+      var t1logo = localStorage.getItem('t1_logo');
+      var logo = document.getElementById('t1rosterlogo');
+      logo.src = t1logo;
+
+      var t1name = localStorage.getItem('t1_name');
+      var t1div = document.getElementById('roster-team-1');
+      t1div.innerHTML = t1name;
 
       var h1 = document.getElementById('roster-img-1');
       h1.src = "assets\\ow_heroes\\" + hero1 +".png";

@@ -37,7 +37,7 @@ body {
     font-weight: 700;
     font-style: normal;
   }
-  
+
   form {
     margin: 20px auto;
     width: 300px;
@@ -49,10 +49,10 @@ body {
   }
   
   input, select {
+    height: 35px;
     width: 150px;
-    padding: 8px;
     margin-bottom: 10px;
-    border: 1px solid #ccc;
+    border: 2px solid #ccc;
     border-radius: 5px;
   }
 
@@ -67,6 +67,11 @@ body {
     font-size: 16px;
     margin: 4px 2px;
     cursor: pointer;
+    padding: 10px;
+  }
+
+  .reset, swap{
+    margin-bottom: 20px;
   }
   
 
@@ -87,6 +92,18 @@ body {
     margin-top: 10px;
     padding: 8px 15px;
     background-color: #ff0400;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 20%;
+    font-family: "Rajdhani", sans-serif;
+    font-weight: 500;
+  }
+
+  .swap{
+    margin-top: 10px;
+    padding: 8px 15px;
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -223,6 +240,82 @@ body {
   cursor: pointer;
 }
 
+#bo3m1display, #bo3m1state {
+  border-radius: 30px;
+  position: absolute;
+  top: 292px;
+  left: 296px;
+  width: 416px;
+  height: 701px;
+}
+
+#bo3m2display, #bo3m2state {
+  border-radius: 30px;
+  position: absolute;
+  top: 292px;
+  left: 753px;
+  width: 414px;
+  height: 701px;
+}
+
+#bo3m3display, #bo3m3state {
+  border-radius: 30px;
+  position: absolute;
+  top: 292px;
+  left: 1208px;
+  width: 416px;
+  height: 701px;
+}
+
+#bo5m1display, #bo5m1state {
+  border-radius: 30px;
+  position: absolute;
+  top: 292px;
+  left: 166px;
+  width: 295px;
+  height: 701px;
+}
+
+#bo5m2display, #bo5m2state {
+  border-radius: 30px;
+  position: absolute;
+  top: 292px;
+  left: 489px;
+  width: 295px;
+  height: 701px;
+}
+
+#bo5m3display, #bo5m3state {
+  border-radius: 30px;
+  position: absolute;
+  top: 292px;
+  left: 813px;
+  width: 295px;
+  height: 701px;
+}
+
+#bo5m4display, #bo5m4state {
+  border-radius: 30px;
+  position: absolute;
+  top: 292px;
+  left: 1136px;
+  width: 295px;
+  height: 701px;
+}
+
+#bo5m5display, #bo5m5state {
+  border-radius: 30px;
+  position: absolute;
+  top: 292px;
+  left: 1459px;
+  width: 295px;
+  height: 701px;
+}
+
+img[src=""] {
+  display: none;
+}
+
 #roster-img-1 {
   border-radius: 31px;
   position: absolute;
@@ -323,4 +416,113 @@ body {
   width: 145px;
   top: 33px;
   left: 100px;
+}
+
+select{
+  font-family: "Rajdhani", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 25px;
+}
+
+.select2-selection__rendered {
+  padding: 5px;
+  height: 50px;
+  font-family: "Rajdhani", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 25px;
+}
+.select2-selection__rendered {
+  line-height: 31px !important;
+}
+.select2-container .select2-selection--single {
+  height: 40px !important;
+}
+.select2-selection__arrow {
+  height: 34px !important;
+}
+
+.unplayed{
+  border-radius: 30px;
+  background-color: rgba(13, 13, 13, 0.9);
+  z-index: 2;
+  color: #fff;
+}
+
+.done-blue{
+  border-radius: 30px;
+  background-color: rgba(112, 200, 235, 0.8);
+  z-index: 2;
+  color: #fff;
+}
+
+.done-red{
+  border-radius: 30px;
+  background-color: rgba(221, 70, 52, 0.8);
+  z-index: 2;
+  color: #fff;
+}
+
+.done-draw{
+  border-radius: 30px;
+  background-color: rgba(13, 13, 13, 0.5);
+  z-index: 2;
+  color: #fff;
+}
+
+.ipr{
+  border-radius: 30px;
+  background-color: rgba(13, 13, 13, 0.5);
+  color: #fff;
+  z-index: 2;
+}
+
+.upnext {
+  background: linear-gradient(to bottom, 
+  rgba(13, 13, 13, 0) 16%,
+  rgba(13, 13, 13, 0.80) 28%,
+  rgba(13, 13, 13, 0.9) 47%,
+  rgba(13, 13, 13, 0.80) 76%, 
+  rgba(13, 13, 13, 0) 86% 
+  );
+  border-radius: 30px;
+  z-index: 2;
+  color: #fff;
+}
+
+#total-score{
+  position: absolute;
+  width: 644.25px;
+  height: 150px;
+  background-color: white;
+  border-radius: 37px;
+  top: 80px;
+  left: 638.9px;
+  z-index: 2;
+}
+
+#miniscore{
+  position: absolute;
+  top: 30px;
+  height: 122px;
+  width: 644.25px;
+  color: #0D534D;
+  z-index: 3;
+}
+
+form{
+  padding-bottom: 100px;
+}
+
+#logo1{
+  position: absolute;
+  top: 10px;
+  left: 5px;
+}
+
+#logo2{
+  position: absolute;
+  top: 10px;
+  right: 5px;
 }

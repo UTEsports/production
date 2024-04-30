@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+  <!-- Container for stacking -->
+<div class="stack-container">
+    <img class="stacked-image" id="mapset">
+    <div class="rajdhani-semibold" id="total-score">
+        <div style="font-size: 40px; color: #0D534D;" id="testing">MATCH SCORE</div><br>
+        <div style="font-size: 96px; font-weight: 900;" id="miniscore"></div>
+        <img id="logo1" style="height:135px; width:135px;"></img>
+        <img id="logo2" style="height:135px; width:135px;"></img>
+    </div>
+    
+    <div class="rajdhani-bold bo3">
+        <img id="bo3m1display" onerror="this.style.opacity='0'">
+        <div id="bo3m1state"></div>
+    </div>
+    <div class="rajdhani-bold bo3">
+        <img id="bo3m2display" onerror="this.style.opacity='0'">
+        <div id="bo3m2state"></div>
+    </div>
+    <div class="rajdhani-bold bo3">
+        <img id="bo3m3display" onerror="this.style.opacity='0'">
+        <div id="bo3m3state"></div>
+    </div>
+    <div class="rajdhani-bold bo5">
+        <img id="bo5m1display" onerror="this.style.opacity='0'">
+        <div id="bo5m1state"></div>
+    </div>
+    <div class="rajdhani-bold bo5">
+        <img id="bo5m2display" onerror="this.style.opacity='0'">
+        <div id="bo5m2state"></div>
+    </div>
+    <div class="rajdhani-bold bo5">
+        <img id="bo5m3display" onerror="this.style.opacity='0'">
+        <div id="bo5m3state"></div>
+    </div>
+    <div class="rajdhani-bold bo5">
+        <img id="bo5m4display" onerror="this.style.opacity='0'">
+        <div id="bo5m4state"></div>
+    </div>
+    <div class="rajdhani-bold bo5">
+        <img id="bo5m5display" onerror="this.style.opacity='0'">
+        <div id="bo5m5state"></div>
+    </div>
+
+  <script>
+    retrieveMaps();    
+
+    function convertToFileName(userInput) {
+        if (!userInput) {
+        return "";
+    }
+        // Convert user input to uppercase and remove spaces
+        const cleanedInput = userInput.replace(/ /g, '');
+
+        // Replace apostrophe with an empty string
+        const fileName = cleanedInput.replace(/[':]/g, '');
+
+        return fileName;
+    }
+    function setMapMode(map, divId){
+        const control = [
+            "Control",
+            "Busan",
+            "Ilios",
+            "Lijiang Tower",
+            "Nepal",
+            "Oasis",
+            "Samoa",
+            "Antarctic Peninsula"
+        ];
+        const escort = [
+            "Escort",
+            "Circuit Royal",
+            "Dorado",
+            "Havana",
+            "Junkertown",
+            "Rialto",
+            "Route 66",
+            "Shambali Monastery",
+            "Watchpoint: Gibraltar"
+        ]
+        const hybrid = [
+            "Hybrid",
+            "Blizzard World",
+            "Eichenwalde",
+            "Hollywood",
+            "King’s Row",
+            "Midtown",
+            "Numbani",
+            "Paraiso",
+        ];
+        const push = [
+            "Push",
+            "Colosseo",
+            "Esperanca",
+            "New Queen Street",
+        ];
+
+        const flashpoint = [
+            "Flashpoint",
+            "New Junk City",
+            "Suravasa"
+        ];
+
+        const clash = [
+            "Clash",
+            "Hanaoka"
+        ]
+
+        if(control.includes(map)){
+            localStorage.setItem(divId + 'icon', 'assets\\ow_maps\\modeicon_control.png')
+        }else if(escort.includes(map)){
+            localStorage.setItem(divId + 'icon', 'assets\\ow_maps\\modeicon_escort.png')
+        }else if(hybrid.includes(map)){
+            localStorage.setItem(divId + 'icon', 'assets\\ow_maps\\modeicon_hybrid.png')
+        }else if(push.includes(map)){
+            localStorage.setItem(divId + 'icon', 'assets\\ow_maps\\modeicon_push.png')
+        }else if(flashpoint.includes(map)){
+            localStorage.setItem(divId + 'icon', 'assets\\ow_maps\\modeicon_flashpoint.png')
+        }else if(clash.includes(map)){
+            localStorage.setItem(divId + 'icon', 'assets\\ow_maps\\modeicon_clash.png')
+        }
+    }
+
+
+    function retrieveMaps(){
+        var bo3scores = [localStorage.getItem('bo3m1winner'), localStorage.getItem('bo3m2winner'), localStorage.getItem('bo3m3winner')]
+
+        var t1Count = bo3scores.filter(function(item) {
+            return item === 't1';
+        }).length
+
+        var t2Count = bo3scores.filter(function(item) {
+            return item === 't2';
+        }).length
+
+        var miniscore = document.getElementById('miniscore');
+        miniscore.innerHTML = t1Count + " - " + t2Count;
+
+        var logo1 = document.getElementById('logo1');
+        logo1.src = localStorage.getItem('t1_logo');
+
+        var logo2 = document.getElementById('logo2');
+        logo2.src = localStorage.getItem('t2_logo');
+
+        var format = localStorage.getItem('mapset');
+        var mapset = document.getElementById('mapset');
+        mapset.src="assets\\ow_maps\\map_" + format + "_box.png";
+        var bo3Divs = document.querySelectorAll('.bo3');
+        var bo5Divs = document.querySelectorAll('.bo5');
+        if (format === 'bo3') {
+            bo3Divs.forEach(function(div) {
+                div.style.display = 'block';
+            });
+            bo5Divs.forEach(function(div) {
+                div.style.display = 'none';
+            });
+        } else if (format === 'bo5') {
+            bo3Divs.forEach(function(div) {
+                div.style.display = 'none';
+            });
+            bo5Divs.forEach(function(div) {
+                div.style.display = 'block';
+            });
+        }
+
+        // BO3 Map 1
+        var bo3m1State = localStorage.getItem('bo3m1_state');   
+        var bo3m1 = localStorage.getItem('bo3m1_map1_bo3');
+        var bo3m1path = "assets\\ow_maps\\bo3\\" + convertToFileName(bo3m1) + ".png";
+        var bo3m1display = document.getElementById('bo3m1display');
+        bo3m1display.src = bo3m1path;
+        setMapMode(bo3m1,'bo3m1state');
+        var bo3m1StateDiv = document.getElementById('bo3m1state');
+        var bo3m1scores = localStorage.getItem('bo3m1_team1_map1_score') + "-" + localStorage.getItem('bo3m1_team2_map1_score');
+        setDivState('bo3m1state', localStorage.getItem('bo3m1_state'), bo3m1scores, bo3m1, 'bo3m1', 'map1');
+
+        // BO3 Map 2
+        var bo3m2State = localStorage.getItem('bo3m2_state');   
+        var bo3m2 = localStorage.getItem('bo3m2_map2_bo3');
+        var bo3m2path = "assets\\ow_maps\\bo3\\" + convertToFileName(bo3m2) + ".png";
+        var bo3m2display = document.getElementById('bo3m2display');
+        bo3m2display.src = bo3m2path;
+        setMapMode(bo3m2,'bo3m2state');
+        var bo3m2StateDiv = document.getElementById('bo3m2state');
+        var bo3m2scores = localStorage.getItem('bo3m2_team1_map2_score') + "-" + localStorage.getItem('bo3m2_team2_map2_score');
+        setDivState('bo3m2state', localStorage.getItem('bo3m2_state'), bo3m2scores, bo3m2, 'bo3m2', 'map2');
+
+        // BO3 Map 3
+        var bo3m3State = localStorage.getItem('bo3m3_state');   
+        var bo3m3 = localStorage.getItem('bo3m3_map3_bo3');
+        var bo3m3path = "assets\\ow_maps\\bo3\\" + convertToFileName(bo3m3) + ".png";
+        var bo3m3display = document.getElementById('bo3m3display');
+        bo3m3display.src = bo3m3path;
+        setMapMode(bo3m3,'bo3m3state');
+        var bo3m3StateDiv = document.getElementById('bo3m3state');
+        var bo3m3scores = localStorage.getItem('bo3m3_team1_map3_score') + "-" + localStorage.getItem('bo3m3_team2_map3_score');
+        setDivState('bo3m3state', localStorage.getItem('bo3m3_state'), bo3m3scores, bo3m3, 'bo3m3', 'map3');
+
+        // BO5 Map 1
+        var bo5m1State = localStorage.getItem('bo5m1_state');   
+        var bo5m1 = localStorage.getItem('bo5m1_map1_bo5');
+        var bo5m1path = "assets\\ow_maps\\bo5\\" + convertToFileName(bo5m1) + ".png";
+        var bo5m1display = document.getElementById('bo5m1display');
+        bo5m1display.src = bo5m1path;
+        setMapMode(bo5m1,'bo5m1state');
+        var bo5m1StateDiv = document.getElementById('bo5m1state');
+        var bo5m1scores = localStorage.getItem('bo5m1_team1_map1_score') + "-" + localStorage.getItem('bo5m1_team2_map1_score');
+        setDivState('bo5m1state', localStorage.getItem('bo5m1_state'), bo5m1scores, bo5m1, 'bo5m1', 'map1');
+
+        // BO5 Map 2
+        var bo5m2State = localStorage.getItem('bo5m2_state');   
+        var bo5m2 = localStorage.getItem('bo5m2_map2_bo5');
+        var bo5m2path = "assets\\ow_maps\\bo5\\" + convertToFileName(bo5m2) + ".png";
+        var bo5m2display = document.getElementById('bo5m2display');
+        bo5m2display.src = bo5m2path;
+        setMapMode(bo5m2,'bo5m2state');
+        var bo5m2StateDiv = document.getElementById('bo5m2state');
+        var bo5m2scores = localStorage.getItem('bo5m2_team1_map2_score') + "-" + localStorage.getItem('bo5m2_team2_map2_score');
+        setDivState('bo5m2state', localStorage.getItem('bo5m2_state'), bo5m2scores, bo5m2, 'bo5m2', 'map2');
+
+        // BO5 Map 3
+        var bo5m3State = localStorage.getItem('bo5m3_state');   
+        var bo5m3 = localStorage.getItem('bo5m3_map3_bo5');
+        var bo5m3path = "assets\\ow_maps\\bo5\\" + convertToFileName(bo5m3) + ".png";
+        var bo5m3display = document.getElementById('bo5m3display');
+        bo5m3display.src = bo5m3path;
+        setMapMode(bo5m3,'bo5m3state');
+        var bo5m3StateDiv = document.getElementById('bo5m3state');
+        var bo5m3scores = localStorage.getItem('bo5m3_team1_map3_score') + "-" + localStorage.getItem('bo5m3_team2_map3_score');
+        setDivState('bo5m3state', localStorage.getItem('bo5m3_state'), bo5m3scores, bo5m3, 'bo5m3', 'map3');
+
+        // BO5 Map 4
+        var bo5m4State = localStorage.getItem('bo5m4_state');   
+        var bo5m4 = localStorage.getItem('bo5m4_map4_bo5');
+        var bo5m4path = "assets\\ow_maps\\bo5\\" + convertToFileName(bo5m4) + ".png";
+        var bo5m4display = document.getElementById('bo5m4display');
+        bo5m4display.src = bo5m4path;
+        setMapMode(bo5m4,'bo5m4state');
+        var bo5m4StateDiv = document.getElementById('bo5m4state');
+        var bo5m4scores = localStorage.getItem('bo5m4_team1_map4_score') + "-" + localStorage.getItem('bo5m4_team2_map4_score');
+        setDivState('bo5m4state', localStorage.getItem('bo5m4_state'), bo5m4scores, bo5m4, 'bo5m4', 'map4');
+
+        // BO5 Map 5
+        var bo5m5State = localStorage.getItem('bo5m5_state');   
+        var bo5m5 = localStorage.getItem('bo5m5_map5_bo5');
+        var bo5m5path = "assets\\ow_maps\\bo5\\" + convertToFileName(bo5m5) + ".png";
+        var bo5m5display = document.getElementById('bo5m5display');
+        bo5m5display.src = bo5m5path;
+        setMapMode(bo5m5,'bo5m5state');
+        var bo5m5StateDiv = document.getElementById('bo5m5state');
+        var bo5m5scores = localStorage.getItem('bo5m5_team1_map5_score') + "-" + localStorage.getItem('bo5m5_team2_map5_score');
+        setDivState('bo5m5state', localStorage.getItem('bo5m5_state'), bo5m5scores, bo5m5, 'bo5m5', 'map5');
+    }
+
+    function setDivState(divId, state, scores, map, tile, mapnum) {
+        
+        var div = document.getElementById(divId);
+        // Remove any existing state classes
+        div.classList.remove('unplayed', 'upnext', 'ipr', 'done-blue', 'done-red', 'done-draw');
+        var icon = localStorage.getItem(divId + 'icon');
+        var t1 = parseInt(localStorage.getItem(tile + '_team1_' + mapnum + '_score'));
+        var t2 = parseInt(localStorage.getItem(tile + '_team2_' + mapnum + '_score'));
+
+        // Apply the appropriate class based on the state
+        if (state === 'unplayed') {
+            div.classList.add('unplayed');
+            div.innerHTML = "<br><br><br><br><br><h1>" + map +"</h1><img src=" + icon + ">"
+        } else if (state === 'upnext') {
+            div.classList.add('upnext');
+            div.innerHTML = "<br><br><br><br><h1>UP NEXT</h1><h2>" + map +"</h2><img src=" + icon + ">"
+        } else if (state === 'ipr') {
+            div.classList.add('ipr');
+            div.innerHTML = "<br><br><h1 style=\"font-size: 100px;\">" + scores + "</h1><h2>" + map +"</h2><img src=" + icon + ">";
+        } else if (state == 'done'){
+            if(parseInt(localStorage.getItem(tile + '_team1_' + mapnum + '_score')) > parseInt(localStorage.getItem(tile + '_team2_' + mapnum + '_score'))){
+                var winner = localStorage.getItem('t1_logo')
+                div.innerHTML = "<br><img class=\"winner-logo\" style=\"width: 170px; height: 170px; margin-bottom:40px;\" team=\"t1\" src=\""+ winner +"\"><h1 style=\"margin-bottom: -50px;\">" + scores + "</h1><h2>" + map +"</h2><img src=" + icon + ">";
+                div.classList.add('done-blue');
+                localStorage.setItem(tile + 'winner', 't1');
+                
+            }else if(parseInt(localStorage.getItem(tile + '_team1_' + mapnum + '_score')) == parseInt(localStorage.getItem(tile + '_team2_' + mapnum + '_score'))){
+                div.innerHTML = "<br><br><br><h1>DRAW</h1><h1 style=\"margin-bottom: -50px;\">" + scores + "</h1><h2>" + map +"</h2><img src=" + icon + ">";
+                div.classList.add('done-draw');
+            }
+            else{
+                var winner = localStorage.getItem('t2_logo')
+                console.log(winner);
+                div.innerHTML = "<br><img class=\"winner-logo\" style=\"width: 170px; height: 170px; margin-bottom:40px;\" team=\"t2\" src=\""+ winner +"\"><h1 style=\"margin-bottom: -50px;\">" + scores + "</h1><h2>" + map +"</h2><img src=" + icon + ">";
+                div.classList.add('done-red');
+                localStorage.setItem(tile + 'winner', 't2');
+            }
+        }
+        
+    }
+    setInterval(function() {
+        retrieveMaps();
+    }, 1*1000);
+  </script>
+</div>
+</body>
+
+</html>
