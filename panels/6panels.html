@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link href="../styles.css" rel="stylesheet" />
+  </head>
+  <body>
+    <!-- Container for stacking -->
+    <div class="stack-container">
+      <img class="stacked-image" src="panel_assets\6.png" alt="Image Description">
+      <div id="p1" class="panel_label5 druk-medium-text" style="top: 411px; left: 205px;"></div>
+      <div id="p2" class="panel_label5 druk-medium-text" style="top: 411px; left: 789px;"></div>
+      <div id="p3" class="panel_label5 druk-medium-text" style="top: 411px; right: 205px;"></div>
+      <div id="p4" class="panel_label5 druk-medium-text" style="top: 755px; left: 205px;"></div>
+      <div id="p5" class="panel_label5 druk-medium-text" style="top: 755px; left: 789px;"></div>
+      <div id="p6" class="panel_label5 druk-medium-text" style="top: 755px; right: 205px;"></div>
+      <div id="panel-streamtitle" class="druk-wide-heavy" style="width: 1287px; height: 124px; top: 914px; left: 560px; position: absolute; z-index: 3; justify-content: center; align-content: center; color: white;"></div>
+
+      <script>
+        getPanelists();
+        function getPanelists() {
+          for (let i = 1; i <= 6; i++) {
+            document.getElementById('panel-streamtitle').innerHTML = localStorage.getItem('stream_title');
+            // Get the name and pronouns from localStorage for each panelist
+            let name = localStorage.getItem("6p_name" + i);
+            let pronouns = localStorage.getItem("6p_noun" + i);
+
+            // Update the HTML content for the corresponding panelist
+            document.getElementById("p" + i).innerHTML =
+            name + pronouns ;
+          }
+        }
+
+        setInterval(function () {
+          getPanelists();
+        }, 1 * 1000);
+      </script>
+    </div>
+  </body>
+</html>

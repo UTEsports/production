@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link href="styles.css" rel="stylesheet" />
+  </head>
+  <body>
+    <!-- Container for stacking -->
+    <div class="stack-container">
+      <div style="color: white">
+        <img
+          class="overlay-logo"
+          id="overlay-logo-1"
+          style="
+            position: absolute;
+            top: 9px;
+            left: 204px;
+            z-index: 2;
+            height: 59px;
+            width: 59px;
+          "
+        />
+        <div
+          class="druk-wide-heavy"
+          id="overlay-name-1"
+          style="
+            font-size: 18px;
+            z-index: 2;
+            width: 150px;
+            height: 77px;
+            top: 0px;
+            left: 274px;
+            overflow-wrap: anywhere;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+              "
+        ></div>
+        <div
+          class="druk-wide-heavy"
+          id="overlay-name-2"
+          style="
+            font-size: 18px;
+            z-index: 2;
+            width: 150px;
+            height: 77px;
+            top: 0px;
+            right: 256px;
+            text-align: center;
+            overflow-wrap: anywhere;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          "
+        ></div>
+        <div
+          class="druk-wide-heavy"
+          id="overlay-score-1"
+          style="z-index: 2"
+        ></div>
+        <div
+          class="druk-wide-heavy"
+          id="overlay-score-2"
+          style="z-index: 2"
+        ></div>
+        <img
+          class="overlay-logo"
+          id="overlay-logo-2"
+          style="
+            position: absolute;
+            top: 9px;
+            left: 1672px;
+            z-index: 2;
+            height: 59px;
+            width: 59px;
+          "
+        />
+        <img
+          class="stacked-image"
+          src="assets\ingame_league_main.png"
+          style="z-index: 0"
+        />
+
+        <div id="lol-bo5" style="display: none">
+          <div id="s1" class="lol_square"></div>
+          <div id="s2" class="lol_square"></div>
+          <div id="s3" class="lol_square"></div>
+
+          <div id="s4" class="lol_square"></div>
+          <div id="s5" class="lol_square"></div>
+          <div id="s6" class="lol_square"></div>
+        </div>
+
+        <div id="lol-bo3" style="display: none">
+          <div id="s7" class="lol_square" style="top: 17px"></div>
+
+          <div id="s8" class="lol_square" style="top: 40px"></div>
+
+          <div id="s9" class="lol_square" style="top: 17px"></div>
+
+          <div id="s10" class="lol_square" style="top: 40px"></div>
+        </div>
+      </div>
+
+      <script>
+        retrieveInfo();
+        // Retrieve form data from localStorage
+        function retrieveInfo() {
+          var t1name = localStorage.getItem("t1_name");
+          var name1 = document.getElementById("overlay-name-1");
+          name1.innerHTML = "<p>" + t1name + "</p>";
+
+          var t2name = localStorage.getItem("t2_name");
+          var name2 = document.getElementById("overlay-name-2");
+          name2.innerHTML = "<p>" + t2name + "</p>";
+
+          var t1logo = localStorage.getItem("t1_logo");
+          var logo1 = document.getElementById("overlay-logo-1");
+          logo1.src = t1logo;
+
+          var t2logo = localStorage.getItem("t2_logo");
+          var logo2 = document.getElementById("overlay-logo-2");
+          logo2.src = t2logo;
+
+          var t1score = localStorage.getItem("t1_score");
+          var t2score = localStorage.getItem("t2_score");
+          var format = localStorage.getItem("format_lol");
+
+          if (format == "BO3") {
+            document.getElementById("lol-bo3").style.display = "";
+            document.getElementById("lol-bo5").style.display = "none";
+            if (t1score == "1") {
+              document.getElementById("s7").style.backgroundColor = "#fff";
+            } else if (t1score == "2") {
+              document.getElementById("s7").style.backgroundColor = "#fff";
+              document.getElementById("s8").style.backgroundColor = "#fff";
+            } else {
+              document.getElementById("s7").style.backgroundColor = "black";
+              document.getElementById("s8").style.backgroundColor = "black";
+            }
+
+            if (t2score == "1") {
+              document.getElementById("s9").style.backgroundColor = "#fff";
+            } else if (t2score == "2") {
+              document.getElementById("s9").style.backgroundColor = "#fff";
+              document.getElementById("s10").style.backgroundColor = "#fff";
+            } else {
+              document.getElementById("s9").style.backgroundColor = "black";
+              document.getElementById("s10").style.backgroundColor = "black";
+            }
+          } else if (format == "BO5") {
+            document.getElementById("lol-bo5").style.display = "";
+            document.getElementById("lol-bo3").style.display = "none";
+            if (t1score == "1") {
+              document.getElementById("s1").style.backgroundColor = "#fff";
+            } else if (t1score == "2") {
+              document.getElementById("s1").style.backgroundColor = "#fff";
+              document.getElementById("s2").style.backgroundColor = "#fff";
+            } else if (t1score == "3") {
+              document.getElementById("s1").style.backgroundColor = "#fff";
+              document.getElementById("s2").style.backgroundColor = "#fff";
+              document.getElementById("s3").style.backgroundColor = "#fff";
+            } else {
+              document.getElementById("s1").style.backgroundColor = "black";
+              document.getElementById("s2").style.backgroundColor = "black";
+              document.getElementById("s3").style.backgroundColor = "black";
+            }
+
+            if (t2score == "1") {
+              document.getElementById("s4").style.backgroundColor = "#fff";
+            } else if (t2score == "2") {
+              document.getElementById("s4").style.backgroundColor = "#fff";
+              document.getElementById("s5").style.backgroundColor = "#fff";
+            } else if (t2score == "3") {
+              document.getElementById("s4").style.backgroundColor = "#fff";
+              document.getElementById("s5").style.backgroundColor = "#fff";
+              document.getElementById("s6").style.backgroundColor = "#fff";
+            } else {
+              document.getElementById("s4").style.backgroundColor = "black";
+              document.getElementById("s5").style.backgroundColor = "black";
+              document.getElementById("s6").style.backgroundColor = "black";
+            }
+          }
+        }
+
+        setInterval(function () {
+          retrieveInfo();
+        }, 1 * 1000);
+      </script>
+    </div>
+  </body>
+</html>

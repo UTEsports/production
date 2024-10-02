@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+<link rel="stylesheet" href="styles.css">
+
+<title>CoD Controller</title>
+
+<style>
+  /* Style for collapsible section header */
+
+  .collapsible, .gen-info {
+    background-color: #3498db;
+    color: #f1f1f1;
+    cursor: pointer;
+    padding: 10px;
+    width: calc(100% - 40px); /* Adjusted width to accommodate arrow */
+    border: none;
+    text-align: left;
+    outline: none;
+    position: relative; /* Added position relative for arrow positioning */
+    margin-top: 10px;
+  }
+
+  /* Style for active collapsible section */
+  .active, .collapsible:hover {
+    background-color: #3e8e41;
+  }
+
+  /* Style for content inside collapsible section */
+  .content {
+    padding: 0 18px;
+    display: none;
+    overflow: hidden;
+    background-color: #f1f1f1;
+    justify-content: center;
+  }
+
+  /* Style for dropdown arrow icon */
+  .dropdown-icon {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+  }
+
+  .input-container {
+    margin-bottom: 18px;
+  }
+
+  /* Adjust form width and margin */
+  form {
+    width: 100%; /* Adjust the width as needed */
+    margin: 0 auto; /* Center align the form */
+  }
+
+  /* Style for back button */
+  .back-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background-color: #3498db;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    text-decoration: none;
+    font-family: 'Rajdhani', sans-serif;
+    border-radius: 20px;
+  }
+
+  .column {
+  flex: 1;
+  margin-right: 20px; /* Adjust margin between columns as needed */
+}
+
+/* Media query for responsiveness */
+@media only screen and (max-width: 800px) {
+  .content {
+    flex-direction: column;
+  }
+  .column {
+    margin-right: 0; /* Remove margin between columns */
+    margin-bottom: 20px; /* Add margin below each column for spacing */
+  }
+}
+
+
+</style>
+</head>
+<body style="background-color: #f1f1f1;">
+
+<a href="index.html" class="back-button">Back</a> <!-- Back button -->
+
+<h1>CoD Controller</h1>
+<button onclick="zoomIn()">Zoom In</button>
+<button onclick="zoomOut()">Zoom Out</button>
+<h3>Scene will only change when you press submit! Reset button only resets this dock</h3>
+<form name="stream" method="post" onsubmit="saveData('stream', event)" id="stream" style="margin-bottom: -50px;">
+  Stream title:
+  <input type="text" id="title" name="title">
+  Subtitle:
+  <input type="text" id="subtitle" name="subtitle">
+  <input type="submit" value="Submit">
+</form>
+
+<button class="collapsible rajdhani-medium" style="font-size: xx-large">
+  Break Screen <span class="dropdown-icon">&#9660;</span>
+  <!-- Downward arrow icon -->
+</button>
+<div class="content">
+  <button
+    type="button"
+    onclick="resetForm(this)"
+    class="reset"
+    style="font-size: xx-large"
+  >
+    Reset Form</button
+  ><br />
+  <div
+    class="content"
+    style="display: flex; justify-content: center; align-items: center"
+  >
+    <form name="b1" method="post" onsubmit="saveData('b1', event)" id="b1">
+      <h3>Game 1</h3>
+      <div class="team-info">
+        Team 1 Info:<br />
+        <input type="text" id="t1_name" name="name" placeholder="Name" />
+        <input type="text" id="t1_logo" name="logo" placeholder="Logo" />
+      </div>
+      <br />
+      <div class="team-info">
+        Team 2 Name:<br />
+        <input type="text" id="t2_name" name="name" placeholder="Name" />
+        <input type="text" id="t2_logo" name="logo" placeholder="Logo" />
+      </div>
+      <br />
+      Format:
+      <select id="format" class="big-dropdown" name="format">
+        <option value="bo1">BO1</option>
+        <option value="bo3">BO3</option>
+        <option value="bo5">BO5</option></select
+      ><br /><br />
+      Status:
+      <select id="status" class="big-dropdown" name="status">
+        <option value="ipr">In Progress</option>
+        <option value="done">Done</option>
+        <option value="unplayed">Unplayed</option></select
+      ><br /><br />
+      Scores:<br />
+      <input
+        type="text"
+        id="t1_score"
+        name="score"
+        placeholder="Team 1 Score"
+      />
+      <input
+        type="text"
+        id="t2_score"
+        name="score"
+        placeholder="Team 2 Score"
+      /><br />
+      <input type="submit" value="Submit" />
+    </form>
+    <form name="b2" method="post" onsubmit="saveData('b2', event)" id="b2">
+      <h3>Game 2</h3>
+      <div class="team-info">
+        Team 1 Info:<br />
+        <input type="text" id="t1_name" name="name" placeholder="Name" />
+        <input type="text" id="t1_logo" name="logo" placeholder="Logo" />
+      </div>
+      <br />
+      <div class="team-info">
+        Team 2 Name:<br />
+        <input type="text" id="t2_name" name="name" placeholder="Name" />
+        <input type="text" id="t2_logo" name="logo" placeholder="Logo" />
+      </div>
+      <br />
+      Format:
+      <select id="format" class="big-dropdown" name="format">
+        <option value="bo1">BO1</option>
+        <option value="bo3">BO3</option>
+        <option value="bo5">BO5</option></select
+      ><br /><br />
+      Status:
+      <select id="status" class="big-dropdown" name="status">
+        <option value="ipr">In Progress</option>
+        <option value="done">Done</option>
+        <option value="unplayed">Unplayed</option></select
+      ><br /><br />
+      Scores:<br />
+      <input
+        type="text"
+        id="t1_score"
+        name="score"
+        placeholder="Team 1 Score"
+      />
+      <input
+        type="text"
+        id="t2_score"
+        name="score"
+        placeholder="Team 2 Score"
+      /><br />
+      <input type="submit" value="Submit" />
+    </form>
+    <form name="b3" method="post" onsubmit="saveData('b3', event)" id="b3">
+      <h3>Game 3</h3>
+      <div class="team-info">
+        Team 1 Info:<br />
+        <input type="text" id="t1_name" name="name" placeholder="Name" />
+        <input type="text" id="t1_logo" name="logo" placeholder="Logo" />
+      </div>
+      <br />
+      <div class="team-info">
+        Team 2 Name:<br />
+        <input type="text" id="t2_name" name="name" placeholder="Name" />
+        <input type="text" id="t2_logo" name="logo" placeholder="Logo" />
+      </div>
+      <br />
+      Format:
+      <select id="format" class="big-dropdown" name="format">
+        <option value="bo1">BO1</option>
+        <option value="bo3">BO3</option>
+        <option value="bo5">BO5</option></select
+      ><br /><br />
+      Status:
+      <select id="status" class="big-dropdown" name="status">
+        <option value="ipr">In Progress</option>
+        <option value="done">Done</option>
+        <option value="unplayed">Unplayed</option></select
+      ><br /><br />
+      Scores:<br />
+      <input
+        type="text"
+        id="t1_score"
+        name="score"
+        placeholder="Team 1 Score"
+      />
+      <input
+        type="text"
+        id="t2_score"
+        name="score"
+        placeholder="Team 2 Score"
+      /><br />
+      <input type="submit" value="Submit" />
+    </form>
+  </div>
+</div>
+
+<button class="collapsible rajdhani-medium" style="font-size: xx-large;">Casters
+  <span class="dropdown-icon">&#9660;</span> <!-- Downward arrow icon -->
+</button>
+<div class="content">
+  <button type="button" onclick="resetForm(this)" class="reset" style="font-size: xx-large;">Reset Form</button><br>
+  <div class="content" style="display: flex; justify-content: center; align-items: center;">
+    <form id="casters" onsubmit="saveData('casters', event)" method="POST">
+      <h3>Edit Caster Screen</h3>
+      <div class="content" style="display: flex; justify-content: center; align-items: center;">
+        <div class="column">
+          Caster 1 Name:<br>
+          <input type="text" id="c1name" name="c1name"><br>
+          Caster 1 Tag:<br>
+          <input type="text" id="c1tag" name="c1tag"><br>
+        </div>
+        <div class="column">
+          Caster 2 Name:<br>
+          <input type="text" id="c2name" name="c2name"><br>
+          Caster 2 Tag:<br>
+          <input type="text" id="c2tag" name="c2tag"><br>
+        </div>
+        <div class="column">
+          Interviewee Name:<br>
+          <input type="text" id="intname" name="intname"><br>
+          Interviewee Tag:<br>
+          <input type="text" id="inttag" name="inttag"><br>
+          
+        </div>
+      </div><br>
+      VS Screen Selection:
+        <select id="vs-choice" class="big-dropdown">
+          <option value="choice1">With Score</option>
+          <option value="choice2">No Score</option>
+        </select><br>
+      Score Selection:
+        <select id="game-scores" class="big-dropdown" name="game-scores">
+          <option value="ow">Overwatch</option>
+          <option value="lol">League of Legends</option>
+          <option value="val">Valorant</option>
+          <option value="cod">Call of Duty</option></select
+        ><br />
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+</div>
+
+
+<button class="collapsible rajdhani-medium" style="font-size: xx-large;">Match Information
+  <span class="dropdown-icon">&#9660;</span> <!-- Downward arrow icon -->
+</button>
+<div class="content"><br>
+  <button type="button" onclick="resetForm(this)" class="reset" style="font-size: xx-large;">Reset Form</button><br>
+  <button type="button" onclick="swap(this)" class="swap" style="font-size: xx-large;">Swap Sides</button>
+  <div class="content" style="display: flex; justify-content: center; align-items: center;">
+    <form name="t1cod" method="post" onsubmit="saveData('t1cod', event)" id="t1cod">
+      <h3>Team 1</h3>
+      <div class="team-info">
+        Team 1 Name (8 characters max per word for styling):<br>
+        <input type="text" id="t1_name" name="name">
+      </div><br>
+      <div class="team-info">
+        Team 1 Logo (image link)<br>
+        <input type="text" id="t1_logo" name="logo">
+      </div><br>
+      <div class="team-info">
+        Team 1 score<br>
+        <input type="text" id="t1_score" name="score">
+      </div><br>
+      <input type="submit" value="Submit">
+    </form>
+    <form name="t2cod" method="post" onsubmit="saveData('t2cod', event)" id="t2cod">
+      <h3>Team 2</h3>
+      <div class="team-info">
+        Team 2 Name (8 characters max per word for styling):<br>
+        <input type="text" id="t1_name" name="name">
+      </div><br>
+      <div class="team-info">
+        Team 2 Logo (image link):<br>
+        <input type="text" id="t2_name" name="logo">
+      </div><br>
+      <div class="team-info">
+        Team 2 score<br>
+        <input type="text" id="t2_score" name="score">
+      </div><br>
+      <input type="submit" value="Submit">
+    </form>
+  </div>
+</div>
+
+<script>
+  let currentZoom = 1;
+
+function zoomIn() {
+  currentZoom += 0.1; // Increase zoom level
+  document.body.style.zoom = currentZoom; // Apply new zoom level to body
+}
+
+function zoomOut() {
+  if (currentZoom > 0.1) { // Ensure minimum zoom level
+    currentZoom -= 0.1; // Decrease zoom level
+    document.body.style.zoom = currentZoom; // Apply new zoom level to body
+  }
+}
+
+  const radioButtons = document.querySelectorAll('input[type="radio"][name="formType"]');
+  const bo3 = document.getElementById('bo3');
+  const bo5 = document.getElementById('bo5');
+  // Add event listener to each radio button
+  radioButtons.forEach(radioButton => {
+    radioButton.addEventListener('change', toggleForm);
+  });
+
+  var coll = document.getElementsByClassName("collapsible");
+  var i;
+
+  for (i = 0; i < coll.length; i++) {
+    coll[i].addEventListener("click", function() {
+      this.classList.toggle("active");
+      var content = this.nextElementSibling;
+      if (content.style.display === "block") {
+        content.style.display = "none";
+      } else {
+        content.style.display = "block";
+      }
+    });
+  }
+  const heroes = [
+  { name: "AATROX", value: "champ_01" },
+  { name: "AHRI", value: "champ_02" },
+  { name: "AKALI", value: "champ_03" },
+  { name: "AKSHAN", value: "champ_04" },
+  { name: "ALISTAR", value: "champ_05" },
+  { name: "AMUMU", value: "champ_06" },
+  { name: "ANIVIA", value: "champ_07" },
+  { name: "ANNIE", value: "champ_08" },
+  { name: "APHELIOS", value: "champ_09" },
+  { name: "ASHE", value: "champ_10" },
+  { name: "AURELION SOL", value: "champ_11" },
+  { name: "AZIR", value: "champ_12" },
+  { name: "BARD", value: "champ_13" },
+  { name: "BEL'VETH", value: "champ_14" },
+  { name: "BLITZCRANK", value: "champ_15" },
+  { name: "BRAND", value: "champ_16" },
+  { name: "BRAUM", value: "champ_17" },
+  { name: "CAITLYN", value: "champ_18" },
+  { name: "CAMILLE", value: "champ_19" },
+  { name: "CASSIOPEIA", value: "champ_20" },
+  { name: "CHO'GATH", value: "champ_21" },
+  { name: "CORKI", value: "champ_22" },
+  { name: "DARIUS", value: "champ_23" },
+  { name: "DIANA", value: "champ_24" },
+  { name: "DR. MUNDO", value: "champ_25" },
+  { name: "DRAVEN", value: "champ_26" },
+  { name: "EKKO", value: "champ_27" },
+  { name: "ELISE", value: "champ_28" },
+  { name: "EVELYNN", value: "champ_29" },
+  { name: "EZREAL", value: "champ_30" },
+  { name: "FIDDLESTICKS", value: "champ_31" },
+  { name: "FIORA", value: "champ_32" },
+  { name: "FIZZ", value: "champ_33" },
+  { name: "GALIO", value: "champ_34" },
+  { name: "GANGPLANK", value: "champ_35" },
+  { name: "GAREN", value: "champ_36" },
+  { name: "GNAR", value: "champ_37" },
+  { name: "GRAGAS", value: "champ_38" },
+  { name: "GRAVES", value: "champ_39" },
+  { name: "GWEN", value: "champ_40" },
+  { name: "HECARIM", value: "champ_41" },
+  { name: "HEIMERDINGER", value: "champ_42" },
+  { name: "ILLAOI", value: "champ_43" },
+  { name: "IRELIA", value: "champ_44" },
+  { name: "IVERN", value: "champ_45" },
+  { name: "JANNA", value: "champ_46" },
+  { name: "JARVAN IV", value: "champ_47" },
+  { name: "JAX", value: "champ_48" },
+  { name: "JAYCE", value: "champ_49" },
+  { name: "JHIN", value: "champ_50" },
+  { name: "JINX", value: "champ_51" },
+  { name: "K'SANTE", value: "champ_52" },
+  { name: "KAI'SA", value: "champ_53" },
+  { name: "KALISTA", value: "champ_54" },
+  { name: "KARMA", value: "champ_55" },
+  { name: "KARTHUS", value: "champ_56" },
+  { name: "KASSADIN", value: "champ_57" },
+  { name: "KATARINA", value: "champ_58" },
+  { name: "KAYLE", value: "champ_59" },
+  { name: "KAYN", value: "champ_60" },
+  { name: "KENNEN", value: "champ_61" },
+  { name: "KHA'ZIX", value: "champ_62" },
+  { name: "KINDRED", value: "champ_63" },
+  { name: "KLED", value: "champ_64" },
+  { name: "KOG'MAW", value: "champ_65" },
+  { name: "LEBLANC", value: "champ_66" },
+  { name: "LEE SIN", value: "champ_67" },
+  { name: "LEONA", value: "champ_68" },
+  { name: "LILLIA", value: "champ_69" },
+  { name: "LISSANDRA", value: "champ_70" },
+  { name: "LUCIAN", value: "champ_71" },
+  { name: "LULU", value: "champ_72" },
+  { name: "LUX", value: "champ_73" },
+  { name: "MALPHITE", value: "champ_74" },
+  { name: "MALZAHAR", value: "champ_75" },
+  { name: "MAOKAI", value: "champ_76" },
+  { name: "MASTER YI", value: "champ_77" },
+  { name: "MILIO", value: "champ_78" },
+  { name: "MISS FORTUNE", value: "champ_79" },
+  { name: "MORDEKAISER", value: "champ_80" },
+  { name: "MORGANA", value: "champ_81" },
+  { name: "NAMI", value: "champ_82" },
+  { name: "NASUS", value: "champ_83" },
+  { name: "NAUTILUS", value: "champ_84" },
+  { name: "NEEKO", value: "champ_85" },
+  { name: "NIDALEE", value: "champ_86" },
+  { name: "NILAH", value: "champ_87" },
+  { name: "NOCTURNE", value: "champ_88" },
+  { name: "NUNU & WILLUMP", value: "champ_89" },
+  { name: "OLAF", value: "champ_90" },
+  { name: "ORIANNA", value: "champ_91" },
+  { name: "ORNN", value: "champ_92" },
+  { name: "PANTHEON", value: "champ_93" },
+  { name: "POPPY", value: "champ_94" },
+  { name: "PYKE", value: "champ_95" },
+  { name: "QIYANA", value: "champ_96" },
+  { name: "QUINN", value: "champ_97" },
+  { name: "RAKAN", value: "champ_98" },
+  { name: "RAMMUS", value: "champ_99" },
+  { name: "REK'SAI", value: "champ_100" },
+  { name: "RELL", value: "champ_101" },
+  { name: "RENATA GLASC", value: "champ_102" },
+  { name: "RENEKTON", value: "champ_103" },
+  { name: "RENGAR", value: "champ_104" },
+  { name: "RIVEN", value: "champ_105" },
+  { name: "RUMBLE", value: "champ_106" },
+  { name: "RYZE", value: "champ_107" },
+  { name: "SAMIRA", value: "champ_108" },
+  { name: "SEJUANI", value: "champ_109" },
+  { name: "SENNA", value: "champ_110" },
+  { name: "SERAPHINE", value: "champ_111" },
+  { name: "SETT", value: "champ_112" },
+  { name: "SHACO", value: "champ_113" },
+  { name: "SHEN", value: "champ_114" },
+  { name: "SHYVANA", value: "champ_115" },
+  { name: "SINGED", value: "champ_116" },
+  { name: "SION", value: "champ_117" },
+  { name: "SIVIR", value: "champ_118" },
+  { name: "SKARNER", value: "champ_119" },
+  { name: "SONA", value: "champ_120" },
+  { name: "SORAKA", value: "champ_121" },
+  { name: "SWAIN", value: "champ_122" },
+  { name: "SYLAS", value: "champ_123" },
+  { name: "SYNDRA", value: "champ_124" },
+  { name: "TAHM KENCH", value: "champ_125" },
+  { name: "TALIYAH", value: "champ_126" },
+  { name: "TALON", value: "champ_127" },
+  { name: "TARIC", value: "champ_128" },
+  { name: "TEEMO", value: "champ_129" },
+  { name: "THRESH", value: "champ_130" },
+  { name: "TRISTANA", value: "champ_131" },
+  { name: "TRUNDLE", value: "champ_132" },
+  { name: "TRYNDAMERE", value: "champ_133" },
+  { name: "TWISTED FATE", value: "champ_134" },
+  { name: "TWITCH", value: "champ_135" },
+  { name: "UDYR", value: "champ_136" },
+  { name: "URGOT", value: "champ_137" },
+  { name: "VARUS", value: "champ_138" },
+  { name: "VAYNE", value: "champ_139" },
+  { name: "VEIGAR", value: "champ_140" },
+  { name: "VEL'KOZ", value: "champ_141" },
+  { name: "VEX", value: "champ_142" },
+  { name: "VI", value: "champ_143" },
+  { name: "VIEGO", value: "champ_144" },
+  { name: "VIKTOR", value: "champ_145" },
+  { name: "VLADIMIR", value: "champ_146" },
+  { name: "VOLIBEAR", value: "champ_147" },
+  { name: "WARWICK", value: "champ_148" },
+  { name: "WUKONG", value: "champ_149" },
+  { name: "XAYAH", value: "champ_150" },
+  { name: "XERATH", value: "champ_151" },
+  { name: "XIN ZHAO", value: "champ_152" },
+  { name: "YASUO", value: "champ_153" },
+  { name: "YONE", value: "champ_154" },
+  { name: "YORICK", value: "champ_155" },
+  { name: "ZAC", value: "champ_156" },
+  { name: "ZED", value: "champ_157" },
+  { name: "ZERI", value: "champ_158" },
+  { name: "ZIGGS", value: "champ_159" },
+  { name: "ZILEAN", value: "champ_160" },
+  { name: "ZOE", value: "champ_161" },
+  { name: "ZYRA", value: "champ_162" },
+  { name: "YUUMI", value: "champ_163" },
+  { name: "HWEI", value: "champ_164" },
+  { name: "SMOLDER", value: "champ_165" },
+  { name: "BRIAR", value: "champ_166" },
+  { name: "NAAFIRI", value: "champ_167" }
+];
+
+// Populate select options for all players
+document.querySelectorAll(".js-example-basic-single").forEach(select => {
+  heroes.forEach(hero => {
+    const option = new Option(hero.name, hero.value);
+    select.add(option);
+  });
+});
+
+// Initialize Select2 for all select elements with the class 'js-example-basic-single'
+$('.js-example-basic-single').select2();
+$('.maps').select2();
+
+function resetForm(button) {
+  // Traverse DOM to find the parent section of the reset button
+  var section = button.closest('.content');
+
+  // Find form elements within the section and reset them
+  section.querySelectorAll('input[type="text"]').forEach(input => {
+    input.value = ''; // Clear input fields
+  });
+  section.querySelectorAll('select').forEach(select => {
+    select.value = ''; // Reset select boxes
+    $(select).trigger('change.select2'); // Trigger change event for Select2
+  });
+}
+
+function swap(button) {
+  for (let i = 1; i <= 5; i++) {
+      // Swap hero names
+      let t1Hero = localStorage.getItem(`t1roster_player${i}_hero`);
+      let t2Hero = localStorage.getItem(`t2roster_player${i + 5}_hero`);
+      localStorage.setItem(`t1roster_player${i}_hero`, t2Hero);
+      localStorage.setItem(`t2roster_player${i + 5}_hero`, t1Hero);
+
+      // Swap player names
+      let t1Name = localStorage.getItem(`t1roster_player${i}_name_ow`);
+      let t2Name = localStorage.getItem(`t2roster_player${i + 5}_name_ow`);
+      localStorage.setItem(`t1roster_player${i}_name_ow`, t2Name);
+      localStorage.setItem(`t2roster_player${i + 5}_name_ow`, t1Name);
+
+      // Swap logos (if necessary)
+      let t1Logo = localStorage.getItem('t1_logo');
+      let t2Logo = localStorage.getItem('t2_logo');
+      localStorage.setItem('t1_logo', t2Logo);
+      localStorage.setItem('t2_logo', t1Logo);
+    }
+      let t1 = localStorage.getItem('t1_name');
+      let t2 = localStorage.getItem('t2_name');
+      localStorage.setItem('t1_name', t2);
+      localStorage.setItem('t2_name', t1);
+
+    // Swap scores (assuming it's a best-of series)
+    for (let i = 1; i <= 5; i++) {
+      // Swap scores for each map
+      let t1MapScore = localStorage.getItem(`bo5m${i}_team1_map${i}_score`);
+      let t2MapScore = localStorage.getItem(`bo5m${i}_team2_map${i}_score`);
+      localStorage.setItem(`bo5m${i}_team1_map${i}_score`, t2MapScore);
+      localStorage.setItem(`bo5m${i}_team2_map${i}_score`, t1MapScore);
+    }
+    for (let i = 1; i <= 3; i++) {
+      // Swap scores for each map
+      let t1MapScore = localStorage.getItem(`bo3m${i}_team1_map${i}_score`);
+      let t2MapScore = localStorage.getItem(`bo3m${i}_team2_map${i}_score`);
+      localStorage.setItem(`bo3m${i}_team1_map${i}_score`, t2MapScore);
+      localStorage.setItem(`bo3m${i}_team2_map${i}_score`, t1MapScore);
+    }
+}
+
+
+function saveData(formName, event) {
+  event.preventDefault(); // Prevent the form from submitting
+  var imagePath;
+  var vs = document.getElementById('vs-choice').value;
+  if (vs === "choice1") {
+      imagePath = "assets\\casters_and_interviews\\casters_vs_2.png";
+  } else {
+      imagePath = "assets\\casters_and_interviews\\casters_vs_1.png";
+  }
+  localStorage.setItem('vsImagePath', imagePath); // Store the file path
+
+  // Get the form element
+  var form = document.forms[formName];
+
+  // Get the ID of the form
+  var formId = form.getAttribute('id');
+
+  // Loop through each select element inside the form
+  var selects = form.querySelectorAll('select');
+  selects.forEach(function(select) {
+    // Get the name of the select element
+    var selectName = select.getAttribute('name');
+    // Get the selected value of the select element
+    var selectedValue = select.value;
+    // Save the selected value in local storage with the form ID as the key
+    localStorage.setItem(formId + '_' + selectName, selectedValue);
+    
+
+  });
+
+  // Optionally, you can also save the player names if needed
+  // For example:
+  var playerNames = form.querySelectorAll('input[type="text"]');
+  playerNames.forEach(function(input) {
+    // Get the name of the input element
+    var inputName = input.getAttribute('name');
+    // Save the input value in local storage with the form ID as the key
+    localStorage.setItem(formId + '_' + inputName, input.value);
+  });
+  // Optionally, you can redirect to another page or perform any other action
+
+  
+}
+
+
+</script>
+
+</body>
+</html>

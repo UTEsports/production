@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+  <!-- Container for stacking -->
+<div class="stack-container">
+  <img class="roster-logo" id="t1rosterlogo">
+  <div class="roster-team" id="roster-team-1">
+  </div>
+  <img class="stacked-image" src="assets\roster\roster_box_blueteam.png">
+  <img class="stacked-image" src="assets\roster\roster_role_league.png">
+
+  <div class="druk-medium-text">
+    <img id="roster-img-1">
+    <div id="roster-name-1" style="color: white;"></div>
+  </div>
+  
+  <div class="druk-medium-text">
+    <img id="roster-img-2">
+    <div id="roster-name-2" style="color: white;"></div>
+  </div>
+  
+  <div class="druk-medium-text">
+    <img id="roster-img-3">
+    <div id="roster-name-3" style="color: white;"></div>
+  </div>
+  
+  <div class="druk-medium-text">
+    <img id="roster-img-4">
+    <div id="roster-name-4" style="color: white;"></div>
+  </div>
+  
+  <div class="druk-medium-text">
+    <img id="roster-img-5">
+    <div id="roster-name-5" style="color: white;"></div>
+  </div>
+
+  <script>
+    retrieveHeroes();
+  // Retrieve form data from localStorage
+    function retrieveHeroes(){
+      var hero1 = localStorage.getItem('r1lol_player1');
+      var hero2 = localStorage.getItem('r1lol_player2');
+      var hero3 = localStorage.getItem('r1lol_player3');
+      var hero4 = localStorage.getItem('r1lol_player4');
+      var hero5 = localStorage.getItem('r1lol_player5');
+
+      var name1 = localStorage.getItem('r1lol_player1_name');
+      var name2 = localStorage.getItem('r1lol_player2_name');
+      var name3 = localStorage.getItem('r1lol_player3_name');
+      var name4 = localStorage.getItem('r1lol_player4_name');
+      var name5 = localStorage.getItem('r1lol_player5_name');
+
+      var t1logo = localStorage.getItem('t1_logo');
+      var logo = document.getElementById('t1rosterlogo');
+      logo.src = t1logo;
+
+      var t1name = localStorage.getItem('t1_name');
+      var t1div = document.getElementById('roster-team-1');
+      t1div.innerHTML = t1name;
+
+      var h1 = document.getElementById('roster-img-1');
+      h1.src = "assets\\league_champs\\" + hero1 +".png";
+
+      var h2 = document.getElementById('roster-img-2');
+      h2.src = "assets\\league_champs\\" + hero2 +".png";
+
+      var h3 = document.getElementById('roster-img-3');
+      h3.src = "assets\\league_champs\\" + hero3 +".png";
+
+      var h4 = document.getElementById('roster-img-4');
+      h4.src = "assets\\league_champs\\" + hero4 +".png";
+
+      var h5 = document.getElementById('roster-img-5');
+      h5.src = "assets\\league_champs\\" + hero5 +".png";
+
+      var n1 = document.getElementById('roster-name-1');
+      n1.innerHTML = name1;
+
+      var n2 = document.getElementById('roster-name-2');
+      n2.innerHTML = name2;
+
+      var n3 = document.getElementById('roster-name-3');
+      n3.innerHTML = name3;
+
+      var n4 = document.getElementById('roster-name-4');
+      n4.innerHTML = name4;
+
+      var n5 = document.getElementById('roster-name-5');
+      n5.innerHTML = name5;
+    }
+
+    setInterval(function(){
+      retrieveHeroes();
+    }, 1 * 1000)
+  </script>
+</div>
+</body>
+
+</html>

@@ -9,7 +9,23 @@
   <link href="styles.css" rel="stylesheet">
 </head>
 <body>
-  <img id="animatedImage1" src="uteslogo.png">
-  <img id="animatedImage2" src="uteslogo.png">
+  <img id="animatedImage1">
+  <img id="animatedImage2">
+  <script>
+    getLogos()
+    function getLogos(){
+      var logo1 = localStorage.getItem('t1_logo');
+      var logo2 = localStorage.getItem('t2_logo');
+
+      var div1 = document.getElementById('animatedImage1');
+      var div2 = document.getElementById('animatedImage2');
+
+      div1.src = logo1;
+      div2.src = logo2;
+    }
+    setInterval(function(){
+      getLogos();
+    }, 1 * 1000)
+  </script>
 </body>
 </html>

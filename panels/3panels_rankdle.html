@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="../styles.css" rel="stylesheet" />
+  </head>
+  <body>
+    <!-- Container for stacking -->
+    <div class="stack-container">
+      <img class="stacked-image" src="panel_assets\3_rankdle.png" alt="Image Description">
+      <div id="p1" class="panel_label druk-medium-text" style="top: 302px; left: 1331px; width: 332px; height: 40px;"></div>
+      <div id="p2" class="panel_label druk-medium-text" style="top: 547px; left: 1331px; width: 332px; height: 40px;"></div>
+      <div id="p3" class="panel_label druk-medium-text" style="top: 800px; left: 1331px; width: 332px; height: 40px;"></div>
+      <div id="panel-streamtitle" class="panel-streamtitle druk-wide-heavy" style="top:916px;"></div>
+      <script>
+        getPanelists();
+        function getPanelists() {
+          document.getElementById('panel-streamtitle').innerHTML = localStorage.getItem('stream_title');
+
+          for (let i = 1; i <= 3; i++) {
+            // Get the name and pronouns from localStorage for each panelist
+            let name = localStorage.getItem("3p_name" + i);
+            let pronouns = localStorage.getItem("3p_noun" + i);
+
+            // Update the HTML content for the corresponding panelist
+            document.getElementById("p" + i).innerHTML =
+            name + pronouns ;
+          }
+        }
+
+        setInterval(function () {
+          getPanelists();
+        }, 1 * 1000);
+      </script>
+    </div>
+  </body>
+</html>

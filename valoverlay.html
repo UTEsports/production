@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+  <!-- Container for stacking -->
+<div class="stack-container">
+    <div style="color: white;">
+        <img class="overlay-logo" id="overlay-logo-1" style="position:absolute; top:94px; left:545px; z-index: 2; height: 28px; width: 28px;">
+        <img class="overlay-logo" id="overlay-logo-2" style="position:absolute; top:94px; right:545px; z-index: 2; height: 28px; width: 28px;">
+
+        <div class="druk-wide-bold" id="valoverlay-name-1" style="position: absolute; font-size: 16px;  z-index: 2; width: 290px; height: 24px; top:95px; left: 581px; align-content: center; overflow: clip; white-space: nowrap;"></div>
+        <div class="druk-wide-bold" id="valoverlay-name-2" style="position: absolute; font-size: 16px;  z-index: 2; width: 290px; height: 24px; top:95px; right: 581px; align-content: center; overflow: clip; white-space: nowrap;"></div>
+        <img class="stacked-image" src="assets\ingame_valo_main.png" style="z-index: 0;">
+        <div id="val-bo5" style="display: none;">
+            <div id="p_1" class="val_p"></div>
+            <div id="p_2" class="val_p"></div>
+            <div id="p_3" class="val_p"></div>
+
+            <div id="p_4" class="val_p"></div>
+            <div id="p_5" class="val_p"></div>
+            <div id="p_6" class="val_p"></div>
+        </div>
+
+        <div id="val-bo3">
+            <div id="p_7" class="val_p" style="left: 890px;"></div>
+
+            <div id="p_8" class="val_p" style="top: 110px; left: 908px;"></div>
+
+            <div id="p_9" class="val_p" style="right: 890px;"></div>
+    
+            <div id="p_10" class="val_p" style="top: 110px; right: 908px;"></div>
+        </div>
+    </div>
+
+    <script>
+    retrieveInfo();
+    // Retrieve form data from localStorage
+    function retrieveInfo(){
+        localStorage.setItem('valbo1m1winner', 'null');
+        localStorage.setItem('valbo3m1winner', 'null');
+        localStorage.setItem('valbo3m2winner', 'null');
+        localStorage.setItem('valbo3m3winner', 'null');
+
+        localStorage.setItem('valbo5m1winner', 'null');
+        localStorage.setItem('valbo5m2winner', 'null');
+        localStorage.setItem('valbo5m3winner', 'null');
+        localStorage.setItem('valbo5m4winner', 'null');
+        localStorage.setItem('valbo5m5winner', 'null');
+
+        var t1name = localStorage.getItem('t1_name');
+        var name1 = document.getElementById('valoverlay-name-1');
+        name1.innerHTML = t1name;
+
+        var t2name = localStorage.getItem('t2_name');
+        var name2 = document.getElementById('valoverlay-name-2');
+        name2.innerHTML = t2name;
+
+        var t1logo = localStorage.getItem('t1_logo');
+        var logo1 = document.getElementById('overlay-logo-1');
+        logo1.src = t1logo;
+
+        var t2logo = localStorage.getItem('t2_logo');
+        var logo2 = document.getElementById('overlay-logo-2');
+        logo2.src = t2logo;
+
+   
+        var t1score = localStorage.getItem('valt1score');
+        var t2score = localStorage.getItem('valt2score');
+        var format = localStorage.getItem('valmapset');
+
+        if(format == 'bo3'){
+            document.getElementById('val-bo3').style.display = "";
+            document.getElementById('val-bo5').style.display = "none";
+            if(t1score == '1'){
+                console.log(t1score);
+                document.getElementById('p_7').style.backgroundColor = "#fff";
+            }else if(t1score == '2'){
+                document.getElementById('p_7').style.backgroundColor = "#fff";
+                document.getElementById('p_8').style.backgroundColor = "#fff";
+            }else{
+                document.getElementById('p_7').style.backgroundColor = "black";
+                document.getElementById('p_8').style.backgroundColor = "black";
+            }
+            
+            if(t2score == '1'){
+                document.getElementById('p_9').style.backgroundColor = "#fff";
+            }else if(t2score == '2'){
+                document.getElementById('p_9').style.backgroundColor = "#fff";
+                document.getElementById('p_10').style.backgroundColor = "#fff";
+            }else{
+                document.getElementById('p_9').style.backgroundColor = "black";
+                document.getElementById('p_10').style.backgroundColor = "black";
+            }
+        } else if(format == 'bo5'){
+            document.getElementById('val-bo5').style.display = "";
+            document.getElementById('val-bo3').style.display = "none";
+            if(t1score == '1'){
+                document.getElementById('p_1').style.backgroundColor = "#fff";
+            }else if(t1score == '2'){
+                document.getElementById('p_1').style.backgroundColor = "#fff";
+                document.getElementById('p_2').style.backgroundColor = "#fff";
+            }else if(t1score == '3'){
+                document.getElementById('p_1').style.backgroundColor = "#fff";
+                document.getElementById('p_2').style.backgroundColor = "#fff";
+                document.getElementById('p_3').style.backgroundColor = "#fff";
+            }else{
+                document.getElementById('p_1').style.backgroundColor = "black";
+                document.getElementById('p_2').style.backgroundColor = "black";
+                document.getElementById('p_3').style.backgroundColor = "black";
+            }
+            
+            if(t2score == '1'){
+                document.getElementById('p_4').style.backgroundColor = "#fff";
+            }else if(t2score == '2'){
+                document.getElementById('p_4').style.backgroundColor = "#fff";
+                document.getElementById('p_5').style.backgroundColor = "#fff";
+            }else if(t2score == '3'){
+                document.getElementById('p_4').style.backgroundColor = "#fff";
+                document.getElementById('p_5').style.backgroundColor = "#fff";
+                document.getElementById('p_6').style.backgroundColor = "#fff";
+            }else{
+                document.getElementById('p_4').style.backgroundColor = "black";
+                document.getElementById('p_5').style.backgroundColor = "black";
+                document.getElementById('p_6').style.backgroundColor = "black";
+            }
+        } else{
+            document.getElementById('val-bo5').style.display = "none";
+            document.getElementById('val-bo3').style.display = "none";
+        }
+    }
+
+    
+    function test(){
+        setDivState(localStorage.getItem('valbo1m1_state'),'valbo1m1', 'map1');
+        setDivState(localStorage.getItem('valbo3m1_state'),'valbo3m1', 'map1');
+        setDivState(localStorage.getItem('valbo3m2_state'),'valbo3m2', 'map2');
+        setDivState(localStorage.getItem('valbo3m3_state'),'valbo3m3', 'map3');
+        setDivState(localStorage.getItem('valbo5m1_state'),'valbo5m1', 'map1');
+        setDivState(localStorage.getItem('valbo5m2_state'),'valbo5m2', 'map2');
+        setDivState(localStorage.getItem('valbo5m3_state'),'valbo5m3', 'map3');
+        setDivState(localStorage.getItem('valbo5m4_state'),'valbo5m4', 'map4');
+        setDivState(localStorage.getItem('valbo5m5_state'),'valbo5m5', 'map5');
+    }
+
+    function setDivState(state, tile, mapnum) {
+
+        // Apply the appropriate class based on the state
+        if (state === 'unplayed') {
+            localStorage.setItem(tile + 'winner', 'null');
+        } else if (state === 'upnext') {
+            localStorage.setItem(tile + 'winner', 'null');
+        } else if (state === 'ipr') {
+            localStorage.setItem('current-map', mapnum);
+            localStorage.setItem(tile + 'winner', 'null');
+        } else if (state == 'done'){
+            if(parseInt(localStorage.getItem(tile + '_team1_' + mapnum + '_score')) > parseInt(localStorage.getItem(tile + '_team2_' + mapnum + '_score'))){
+                localStorage.setItem(tile + 'winner', 't1');
+                
+            }else if(parseInt(localStorage.getItem(tile + '_team1_' + mapnum + '_score')) == parseInt(localStorage.getItem(tile + '_team2_' + mapnum + '_score'))){
+                localStorage.setItem(tile + 'winner', 'null');
+            }
+            else{
+                localStorage.setItem(tile + 'winner', 't2');
+            }
+        }
+        
+    }
+
+    function setScore(){
+        var format = localStorage.getItem('valmapset');
+        if(format == 'bo3'){
+            var bo3scores = [localStorage.getItem('valbo3m1winner'), localStorage.getItem('valbo3m2winner'), localStorage.getItem('valbo3m3winner')]
+
+            var t1Count = bo3scores.filter(function(item) {
+                return item === 't1';
+            }).length
+
+            localStorage.setItem('valt1score', t1Count);
+
+            var t2Count = bo3scores.filter(function(item) {
+                return item === 't2';
+            }).length
+
+            localStorage.setItem('valt2score', t2Count);
+        }else if(format == 'bo5'){
+            var bo5scores = [localStorage.getItem('valbo5m1winner'), localStorage.getItem('valbo5m2winner'), localStorage.getItem('valbo5m3winner'), localStorage.getItem('valbo5m4winner'), localStorage.getItem('valbo5m5winner')]
+
+            var t1Count = bo5scores.filter(function(item) {
+                return item === 't1';
+            }).length
+
+            localStorage.setItem('valt1score', t1Count);
+
+            var t2Count = bo5scores.filter(function(item) {
+                return item === 't2';
+            }).length
+
+            localStorage.setItem('valt2score', t2Count);
+        }else if(format == 'bo1'){
+            var bo5scores = [localStorage.getItem('valbo1m1winner')]
+
+            var t1Count = bo5scores.filter(function(item) {
+                return item === 't1';
+            }).length
+
+            localStorage.setItem('valt1score', t1Count);
+
+            var t2Count = bo5scores.filter(function(item) {
+                return item === 't2';
+            }).length
+
+            localStorage.setItem('valt2score', t2Count);
+        }
+        
+        
+    }
+
+    setInterval(function(){
+        retrieveInfo();
+        test();
+        setScore();
+    }, 1 * 1000)
+    </script>
+</div>
+</body>
+
+</html>

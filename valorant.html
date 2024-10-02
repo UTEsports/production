@@ -11,9 +11,11 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 <link rel="stylesheet" href="styles.css">
 
-<title>Overwatch Controller</title>
+<title>Valorant Controller</title>
+
 <style>
   /* Style for collapsible section header */
+
   .collapsible, .gen-info {
     background-color: #3498db;
     color: #f1f1f1;
@@ -38,6 +40,7 @@
     display: none;
     overflow: hidden;
     background-color: #f1f1f1;
+    justify-content: center;
   }
 
   /* Style for dropdown arrow icon */
@@ -54,7 +57,7 @@
 
   /* Adjust form width and margin */
   form {
-    width: 20%; /* Adjust the width as needed */
+    width: 100%; /* Adjust the width as needed */
     margin: 0 auto; /* Center align the form */
   }
 
@@ -71,103 +74,590 @@
     font-size: 16px;
     text-decoration: none;
     font-family: 'Rajdhani', sans-serif;
+    border-radius: 20px;
   }
+
+  .column {
+  flex: 1;
+  margin-right: 20px; /* Adjust margin between columns as needed */
+}
+
+/* Media query for responsiveness */
+@media only screen and (max-width: 800px) {
+  .content {
+    flex-direction: column;
+  }
+  .column {
+    margin-right: 0; /* Remove margin between columns */
+    margin-bottom: 20px; /* Add margin below each column for spacing */
+  }
+}
+
+
 </style>
 </head>
 <body style="background-color: #f1f1f1;">
 
-<a href="index.html" class="back-button">Back</a> <!-- Back button -->
+<h1>Valorant Controller</h1>
+<button onclick="zoomIn()">Zoom In</button>
+<button onclick="zoomOut()">Zoom Out</button>
+<h3>Scene will only change when you press submit! Reset button only resets this dock</h3>
+<form name="stream" method="post" onsubmit="saveData('stream', event)" id="stream" style="margin-bottom: -50px;">
+  Stream title:
+  <input type="text" id="title" name="title">
+  Subtitle:
+  <input type="text" id="subtitle" name="subtitle">
+  <input type="submit" value="Submit">
+</form>
 
-<h1>Overwatch Controller</h1>
+<button class="collapsible rajdhani-medium" style="font-size: xx-large">
+  Break Screen <span class="dropdown-icon">&#9660;</span>
+  <!-- Downward arrow icon -->
+</button>
+<div class="content">
+  <button
+    type="button"
+    onclick="resetForm(this)"
+    class="reset"
+    style="font-size: xx-large"
+  >
+    Reset Form</button
+  ><br />
+  <div
+    class="content"
+    style="display: flex; justify-content: center; align-items: center"
+  >
+    <form name="b1" method="post" onsubmit="saveData('b1', event)" id="b1">
+      <h3>Game 1</h3>
+      <div class="team-info">
+        Team 1 Info:<br />
+        <input type="text" id="t1_name" name="name1" placeholder="Name" />
+        <input type="text" id="t1_logo" name="logo1" placeholder="Logo" />
+      </div>
+      <br />
+      <div class="team-info">
+        Team 2 Name:<br />
+        <input type="text" id="t2_name" name="name2" placeholder="Name" />
+        <input type="text" id="t2_logo" name="logo2" placeholder="Logo" />
+      </div>
+      <br />
+      Scores:<br />
+      <input
+        type="text"
+        id="t1_score"
+        name="score1"
+        placeholder="Team 1 Score"
+      />
+      <input
+        type="text"
+        id="t2_score"
+        name="score2"
+        placeholder="Team 2 Score"
+      /><br />
+      <br />
+      Format:
+      <select id="format" class="big-dropdown" name="format">
+        <option value="bo1">BO1</option>
+        <option value="bo3">BO3</option>
+        <option value="bo5">BO5</option></select
+      ><br /><br />
+      Status:
+      <select id="status" class="big-dropdown" name="status">
+        <option value="unplayed">Unplayed</option>
+        <option value="done">Done</option></select
+      ><br /><br />
+      Date:
+      <input
+        type="text"
+        id="date"
+        name="date"
+        placeholder="Date"
+      /><br /><br />
+      <input type="submit" value="Submit" />
+    </form>
+    <form name="b2" method="post" onsubmit="saveData('b2', event)" id="b2">
+      <h3>Game 2</h3>
+      <div class="team-info">
+        Team 1 Info:<br />
+        <input type="text" id="t1_name" name="name1" placeholder="Name" />
+        <input type="text" id="t1_logo" name="logo1" placeholder="Logo" />
+      </div>
+      <br />
+      <div class="team-info">
+        Team 2 Name:<br />
+        <input type="text" id="t2_name" name="name2" placeholder="Name" />
+        <input type="text" id="t2_logo" name="logo2" placeholder="Logo" />
+      </div>
+      <br />
+      Scores:<br />
+      <input
+        type="text"
+        id="t1_score"
+        name="score1"
+        placeholder="Team 1 Score"
+      />
+      <input
+        type="text"
+        id="t2_score"
+        name="score2"
+        placeholder="Team 2 Score"
+      /><br />
+      <br />
+      Format:
+      <select id="format" class="big-dropdown" name="format">
+        <option value="bo1">BO1</option>
+        <option value="bo3">BO3</option>
+        <option value="bo5">BO5</option></select
+      ><br /><br />
+      Status:
+      <select id="status" class="big-dropdown" name="status">
+        <option value="unplayed">Unplayed</option>
+        <option value="done">Done</option></select
+      ><br /><br />
+      Date:
+      <input
+        type="text"
+        id="date"
+        name="date"
+        placeholder="Date"
+      /><br /><br />
+      <input type="submit" value="Submit" />
+    </form>
+    <form name="b3" method="post" onsubmit="saveData('b3', event)" id="b3">
+      <h3>Game 3</h3>
+      <div class="team-info">
+        Team 1 Info:<br />
+        <input type="text" id="t1_name" name="name1" placeholder="Name" />
+        <input type="text" id="t1_logo" name="logo1" placeholder="Logo" />
+      </div>
+      <br />
+      <div class="team-info">
+        Team 2 Name:<br />
+        <input type="text" id="t2_name" name="name2" placeholder="Name" />
+        <input type="text" id="t2_logo" name="logo2" placeholder="Logo" />
+      </div>
+      <br />
+      Scores:<br />
+      <input
+        type="text"
+        id="t1_score"
+        name="score1"
+        placeholder="Team 1 Score"
+      />
+      <input
+        type="text"
+        id="t2_score"
+        name="score2"
+        placeholder="Team 2 Score"
+      /><br />
+      <br />
+      Format:
+      <select id="format" class="big-dropdown" name="format">
+        <option value="bo1">BO1</option>
+        <option value="bo3">BO3</option>
+        <option value="bo5">BO5</option></select
+      ><br /><br />
+      Status:
+      <select id="status" class="big-dropdown" name="status">
+        <option value="unplayed">Unplayed</option>
+        <option value="done">Done</option></select
+      ><br /><br />
+      Date:
+      <input
+        type="text"
+        id="date"
+        name="date"
+        placeholder="Date"
+      /><br /><br />
+      <input type="submit" value="Submit" />
+    </form>
+  </div>
+</div>
 
-<button class="gen-info rajdhani-medium" style="font-size: xx-large;">General Information (Casters, Team Info, Break Screen)</button>
+<button class="collapsible rajdhani-medium" style="font-size: xx-large;">Casters
+  <span class="dropdown-icon">&#9660;</span> <!-- Downward arrow icon -->
+</button>
+<div class="content">
+  <button type="button" onclick="resetForm(this)" class="reset" style="font-size: xx-large;">Reset Form</button><br>
+  <div class="content" style="display: flex; justify-content: center; align-items: center;">
+    <form id="casters" onsubmit="saveData('casters', event)" method="POST">
+      <h3>Edit Caster Screen</h3>
+      <div class="content" style="display: flex; justify-content: center; align-items: center;">
+        <div class="column">
+          Caster 1 Name:<br>
+          <input type="text" id="c1name" name="c1name"><br>
+          Caster 1 Tag:<br>
+          <input type="text" id="c1tag" name="c1tag"><br>
+        </div>
+        <div class="column">
+          Caster 2 Name:<br>
+          <input type="text" id="c2name" name="c2name"><br>
+          Caster 2 Tag:<br>
+          <input type="text" id="c2tag" name="c2tag"><br>
+        </div>
+        <div class="column">
+          Interviewee Name:<br>
+          <input type="text" id="intname" name="intname"><br>
+          Interviewee Tag:<br>
+          <input type="text" id="inttag" name="inttag"><br>
+          
+        </div>
+      </div>
+      VS Screen Selection:
+        <select id="vs-choice" class="big-dropdown">
+          <option value="choice1">With Score</option>
+          <option value="choice2">No Score</option>
+        </select><br>
+      Score Selection:
+      <select id="game-scores" class="big-dropdown" name="game-scores">
+        <option value="ow">Overwatch</option>
+        <option value="lol">League of Legends</option>
+        <option value="val">Valorant</option>
+        <option value="cod">Call of Duty</option></select
+      ><br />
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+</div>
+
 
 <button class="collapsible rajdhani-medium" style="font-size: xx-large;">Match Information
   <span class="dropdown-icon">&#9660;</span> <!-- Downward arrow icon -->
 </button>
 <div class="content">
-  <p>Content for Section 1 goes here...</p>
+  <button type="button" onclick="resetForm(this)" class="reset" style="font-size: xx-large;">Reset Form</button><br>
+  <button type="button" onclick="swap(this)" class="swap" style="font-size: xx-large;">Swap Sides</button>
+  <div class="content" style="display: flex; justify-content: center; align-items: center;">
+    <form name="valt1" method="post" onsubmit="saveData('valt1', event)" id="t1">
+      <h3>Team 1</h3>
+      <div class="team-info">
+        Team 1 Name (10 characters max for styling):<br>
+        <input type="text" id="t1_name" name="name">
+      </div><br>
+      <div class="team-info">
+        Team 1 Logo (image link)<br>
+        <input type="text" id="t1_logo" name="logo">
+      </div><br>
+      <input type="submit" value="Submit">
+    </form>
+    <form name="valt2" method="post" onsubmit="saveData('valt2', event)" id="t2">
+      <h3>Team 2</h3>
+      <div class="team-info">
+        Team 2 Name (10 characters max for styling):<br>
+        <input type="text" id="t2_name" name="name">
+      </div><br>
+      <div class="team-info">
+        Team 2 Logo (image link):<br>
+        <input type="text" id="t2_logo" name="logo">
+      </div><br>
+      <input type="submit" value="Submit">
+    </form>
+  </div>
 </div>
 
 <button class="collapsible rajdhani-medium" style="font-size: xx-large;">Roster Information
   <span class="dropdown-icon">&#9660;</span> <!-- Downward arrow icon -->
 </button>
-<div>
-  <button type="button" onclick="resetForm()" class="reset" style="font-size: xx-large;">Reset</button> <!-- Reset button -->
+<div class="content">
+  <button type="button" onclick="resetForm(this)" class="reset" style="font-size: xx-large;">Reset Form</button><br>
   <div class="content" style="display: flex; justify-content: center; align-items: center;">
-  
-    <form name="team1" method="post" onsubmit="saveData('team1', event)">
+    <form name="valr1" method="post" onsubmit="saveData('valr1', event)" id="valr1">
       <h3>Team 1</h3>
       <div class="player-info">
         <label for="player1_name_1">Player 1 Name:</label>
-        <input type="text" id="player1_name_ow" name="player1_name_ow">
-        <select class="js-example-basic-single" name="player1_hero"></select>
+        <input type="text" id="player1_name" name="player1_name">
+        <select class="js-example-basic-single" name="player1"></select>
       </div><br>
       <div class="player-info">
         <label for="player2_name_1">Player 2 Name:</label>
-        <input type="text" id="player2_name_ow" name="player2_name_ow">
-        <select class="js-example-basic-single" name="player2_hero"></select>
+        <input type="text" id="player2_name" name="player2_name">
+        <select class="js-example-basic-single" name="player2"></select>
       </div><br>
       <div class="player-info">
         <label for="player3_name_1">Player 3 Name:</label>
-        <input type="text" id="player3_name_ow" name="player3_name_ow">
-        <select class="js-example-basic-single" name="player3_hero"></select>
+        <input type="text" id="player3_name" name="player3_name">
+        <select class="js-example-basic-single" name="player3"></select>
       </div><br>
       <div class="player-info">
         <label for="player4_name_1">Player 4 Name:</label>
-        <input type="text" id="player4_name_ow" name="player4_name_ow">
-        <select class="js-example-basic-single" name="player4_hero"></select>
+        <input type="text" id="player4_name" name="player4_name">
+        <select class="js-example-basic-single" name="player4"></select>
       </div><br>
       <div class="player-info">
         <label for="player5_name_1">Player 5 Name:</label>
-        <input type="text" id="player5_name_ow" name="player5_name_ow">
-        <select class="js-example-basic-single" name="player5_hero"></select>
+        <input type="text" id="player5_name" name="player5_name">
+        <select class="js-example-basic-single" name="player5"></select>
       </div><br>
       <input type="submit" value="Submit">
     </form>
     
     
-    <form name="team2" method="post" onsubmit="saveData('team2', event)">
+    <form name="valr2" method="post" onsubmit="saveData('valr2', event)" id="valr2">
       <h3>Team 2</h3>
       <div class="player-info">
         <label for="player6_name_1">Player 1 Name:</label>
-        <input type="text" id="player6_name_ow" name="player6_name_ow">
-        <select class="js-example-basic-single" name="player6_hero"></select>
+        <input type="text" id="player6_name" name="player6_name">
+        <select class="js-example-basic-single" name="player6"></select>
       </div><br>
       <div class="player-info">
         <label for="player7_name_1">Player 2 Name:</label>
-        <input type="text" id="player7_name_ow" name="player7_name_ow">
-        <select class="js-example-basic-single" name="player7_hero"></select>
+        <input type="text" id="player7_name" name="player7_name">
+        <select class="js-example-basic-single" name="player7"></select>
       </div><br>
       <div class="player-info">
         <label for="player8_name_1">Player 3 Name:</label>
-        <input type="text" id="player8_name_ow" name="player8_name_ow">
-        <select class="js-example-basic-single" name="player8_hero"></select>
+        <input type="text" id="player8_name" name="player8_name">
+        <select class="js-example-basic-single" name="player8"></select>
       </div><br>
       <div class="player-info">
         <label for="player9_name_1">Player 4 Name:</label>
-        <input type="text" id="player9_name_ow" name="player9_name_ow">
-        <select class="js-example-basic-single" name="player9_hero"></select>
+        <input type="text" id="player9_name" name="player9_name">
+        <select class="js-example-basic-single" name="player9"></select>
       </div><br>
       <div class="player-info">
         <label for="player10_name_1">Player 5 Name:</label>
-        <input type="text" id="player10_name_ow" name="player10_name_ow">
-        <select class="js-example-basic-single" name="player10_hero"></select>
+        <input type="text" id="player10_name" name="player10_name">
+        <select class="js-example-basic-single" name="player10"></select>
       </div><br>
       <input type="submit" value="Submit" id="submit">
     </form>
   </div>
 </div>
 
-
 <button class="collapsible rajdhani-medium" style="font-size: xx-large;">Map Information
   <span class="dropdown-icon">&#9660;</span> <!-- Downward arrow icon -->
 </button>
 <div class="content">
-  <p>Content for Section 3 goes here...</p>
+  <button type="button" onclick="resetForm(this)" class="reset" style="font-size: xx-large;">Reset Form</button><br>
+  <h2>Select Format:</h2>
+  <div class="content" style="display: flex; justify-content: center; align-items: center;">
+    <label for="radio">BO1</label>
+    <input type="radio" name="formType" value="BO1" checked>
+    <label for="radio">BO3</label>
+    <input type="radio" name="formType" value="BO3">
+    <label for="radio">BO5</label>
+    <input type="radio" name="formType" value="BO5">
+  </div>
+
+  <div id="bo1">
+    <h2>Bo1</h2>
+    <div style="display: flex; justify-content: center; align-items: center;">
+      <form name="valbo1m1" method="post" onsubmit="saveData('valbo1m1', event)" id="valbo1m1">
+        <h2>Map 1</h2>
+        <label>State</label>
+        <select id="map1bo1-state" class="mapstate" name="state">
+          <option value="unplayed">Unplayed</option>
+          <option value="upnext">Up Next</option>
+          <option value="ipr">In Progress</option>
+          <option value="done">Done</option>
+        </select>
+        <label for="maps">Map</label>
+        <select class="maps" name="map1_bo1"></select>
+        <label for="team1_map1_score">Team 1 Score:</label>
+        <input type="text" id="team1_map1_score" name="team1_map1_score">
+        <label for="team2_map1_score">Team 2 Score:</label>
+        <input type="text" id="team2_map1_score" name="team2_map1_score"><br>
+        <input type="submit" value="Submit" id="submit">
+      </form>
+    </div>
+  </div>
+
+  <div id="bo3">
+    <h2>Bo3</h2>
+    <div style="display: flex; justify-content: center; align-items: center;">
+      <form name="valbo3m1" method="post" onsubmit="saveData('valbo3m1', event)" id="valbo3m1">
+        <h2>Map 1</h2>
+        <label>State</label>
+        <select id="map1bo3-state" class="mapstate" name="state">
+          <option value="unplayed">Unplayed</option>
+          <option value="upnext">Up Next</option>
+          <option value="ipr">In Progress</option>
+          <option value="done">Done</option>
+        </select>
+        <label for="maps">Map</label>
+        <select class="maps" name="map1_bo3"></select>
+        <label for="team1_map1_score">Team 1 Score:</label>
+        <input type="text" id="team1_map1_score" name="team1_map1_score">
+        <label for="team2_map1_score">Team 2 Score:</label>
+        <input type="text" id="team2_map1_score" name="team2_map1_score"><br>
+        <input type="submit" value="Submit" id="submit">
+      </form>
+      <form name="valbo3m2" method="post" onsubmit="saveData('valbo3m2', event)" id="valbo3m2">
+        <h2>Map 2</h2>
+        <label>State</label>
+        <select id="map2bo3-state" class="mapstate" name="state">
+          <option value="unplayed">Unplayed</option>
+          <option value="upnext">Up Next</option>
+          <option value="ipr">In Progress</option>
+          <option value="done">Done</option>
+        </select>
+        <label for="maps">Map</label>
+        <select class="maps" name="map2_bo3"></select>
+        <label for="team1_map2_score">Team 1 Score:</label>
+        <input type="text" id="team1_map2_score" name="team1_map2_score">
+        <label for="team2_map1_score">Team 2 Score:</label>
+        <input type="text" id="team2_map2_score" name="team2_map2_score"><br>
+        <input type="submit" value="Submit" id="submit">
+      </form>
+      <form name="valbo3m3" method="post" onsubmit="saveData('valbo3m3', event)" id="valbo3m3">
+        <h2>Map 3</h2>
+        <label>State</label>
+        <select id="map3bo3-state" class="mapstate" name="state">
+          <option value="unplayed">Unplayed</option>
+          <option value="upnext">Up Next</option>
+          <option value="ipr">In Progress</option>
+          <option value="done">Done</option>
+        </select>
+        <label for="maps">Map</label>
+        <select class="maps" name="map3_bo3"></select>
+        <label for="team1_map3_score">Team 1 Score:</label>
+        <input type="text" id="team1_map3_score" name="team1_map3_score">
+        <label for="team2_map1_score">Team 2 Score:</label>
+        <input type="text" id="team2_map3_score" name="team2_map3_score"><br>
+        <input type="submit" value="Submit" id="submit">
+      </form>
+    </div>
+  </div>
+  
+  <div id="bo5">
+    <h2>BO5</h2>
+    <div style="display: flex; justify-content: center; align-items: center;">
+      <form name="valbo5m1" method="post" onsubmit="saveData('valbo5m1', event)" id="valbo5m1">
+        <h2>Map 1</h2>
+        <label>State</label>
+        <select id="map1bo5-state" class="mapstate" name="state">
+          <option value="unplayed">Unplayed</option>
+          <option value="upnext">Up Next</option>
+          <option value="ipr">In Progress</option>
+          <option value="done">Done</option>
+        </select>
+        <label for="maps">Map</label>
+        <select class="maps" name="map1_bo5"></select>
+        <label for="team1_map1_score">Team 1 Score:</label>
+        <input type="text" id="team1_map1_score" name="team1_map1_score">
+        <label for="team2_map1_score">Team 2 Score:</label>
+        <input type="text" id="team2_map1_score" name="team2_map1_score"><br>
+        <input type="submit" value="Submit" id="submit">
+      </form>
+      <form name="valbo5m2" method="post" onsubmit="saveData('valbo5m2', event)" id="valbo5m2">
+        <h2>Map 2</h2>
+        <label>State</label>
+        <select id="map2bo5-state" class="mapstate" name="state">
+          <option value="unplayed">Unplayed</option>
+          <option value="upnext">Up Next</option>
+          <option value="ipr">In Progress</option>
+          <option value="done">Done</option>
+        </select>
+        <label for="maps">Map</label>
+        <select class="maps" name="map2_bo5"></select>
+        <label for="team1_map2_score">Team 1 Score:</label>
+        <input type="text" id="team1_map2_score" name="team1_map2_score">
+        <label for="team2_map2_score">Team 2 Score:</label>
+        <input type="text" id="team2_map2_score" name="team2_map2_score"><br>
+        <input type="submit" value="Submit" id="submit">
+      </form>
+      <form name="valbo5m3" method="post" onsubmit="saveData('valbo5m3', event)" id="valbo5m3">
+        <h2>Map 3</h2>
+        <label>State</label>
+        <select id="map3bo5-state" class="mapstate" name="state">
+          <option value="unplayed">Unplayed</option>
+          <option value="upnext">Up Next</option>
+          <option value="ipr">In Progress</option>
+          <option value="done">Done</option>
+        </select>
+        <label for="maps">Map</label>
+        <select class="maps" name="map3_bo5"></select>
+        <label for="team1_map3_score">Team 1 Score:</label>
+        <input type="text" id="team1_map3_score" name="team1_map3_score">
+        <label for="team2_map3_score">Team 2 Score:</label>
+        <input type="text" id="team2_map3_score" name="team2_map3_score"><br>
+        <input type="submit" value="Submit" id="submit">
+      </form>
+      <form name="valbo5m4" method="post" onsubmit="saveData('valbo5m4', event)" id="valbo5m4">
+        <h2>Map 4</h2>
+        <label>State</label>
+        <select id="map4bo5-state" class="mapstate" name="state">
+          <option value="unplayed">Unplayed</option>
+          <option value="upnext">Up Next</option>
+          <option value="ipr">In Progress</option>
+          <option value="done">Done</option>
+        </select>
+        <label for="maps">Map</label>
+        <select class="maps" name="map4_bo5"></select>
+        <label for="team1_map4_score">Team 1 Score:</label>
+        <input type="text" id="team1_map4_score" name="team1_map4_score">
+        <label for="team2_map4_score">Team 2 Score:</label>
+        <input type="text" id="team2_map4_score" name="team2_map4_score"><br>
+        <input type="submit" value="Submit" id="submit">
+      </form>
+      <form name="valbo5m5" method="post" onsubmit="saveData('valbo5m5', event)" id="valbo5m5">
+        <h2>Map 5</h2>
+        <label>State</label>
+        <select id="map5bo5-state" class="mapstate" name="state">
+          <option value="unplayed">Unplayed</option>
+          <option value="upnext">Up Next</option>
+          <option value="ipr">In Progress</option>
+          <option value="done">Done</option>
+        </select>
+        <label for="maps">Map</label>
+        <select class="maps" name="map5_bo5"></select>
+        <label for="team1_map5_score">Team 1 Score:</label>
+        <input type="text" id="team1_map5_score" name="team1_map5_score">
+        <label for="team2_map5_score">Team 2 Score:</label>
+        <input type="text" id="team2_map5_score" name="team2_map5_score"><br>
+        <input type="submit" value="Submit" id="submit">
+      </form>
+    </div>
+  </div>
 </div>
 
 <script>
+  let currentZoom = 1;
+
+function zoomIn() {
+  currentZoom += 0.1; // Increase zoom level
+  document.body.style.zoom = currentZoom; // Apply new zoom level to body
+}
+
+function zoomOut() {
+  if (currentZoom > 0.1) { // Ensure minimum zoom level
+    currentZoom -= 0.1; // Decrease zoom level
+    document.body.style.zoom = currentZoom; // Apply new zoom level to body
+  }
+}
+
+  const radioButtons = document.querySelectorAll('input[type="radio"][name="formType"]');
+  const bo1 = document.getElementById('bo1');
+  const bo3 = document.getElementById('bo3');
+  const bo5 = document.getElementById('bo5');
+
+  // Function to show or hide form sections based on selected radio option
+  function toggleForm() {
+    if (this.value === 'BO3') {
+      bo3.style.display = 'block';
+      bo5.style.display = 'none';
+      bo1.style.display = 'none';
+      localStorage.setItem('valmapset', 'bo3');
+    }else if(this.value == 'BO1'){
+      bo5.style.display = 'none';
+      bo3.style.display = 'none';
+      bo1.style.display = 'block';
+      localStorage.setItem('valmapset', 'bo1');
+    }else {
+      bo3.style.display = 'none';
+      bo5.style.display = 'block';
+      bo1.style.display = 'none';
+      localStorage.setItem('valmapset', 'bo5');
+    }
+  }
+
+  // Add event listener to each radio button
+  radioButtons.forEach(radioButton => {
+    radioButton.addEventListener('change', toggleForm);
+  });
+
+  // Initially show the basic form
+  toggleForm.call(radioButtons[0]);
   var coll = document.getElementsByClassName("collapsible");
   var i;
 
@@ -184,12 +674,54 @@
   }
 // Predefined data for hero options
 const heroes = [
-  "ANA", "ASHE", "BAPTISTE", "BASTION", "BRIGITTE", "CASSIDY", "DVA",
-  "DOOMFIST", "ECHO", "GENJI", "HANZO", "ILLARI", "JUNKERQUEEN", "JUNKRAT", "KIRIKO",
-  "LIFEWEAVER", "LUCIO", "MAUGA", "MEI", "MERCY", "MOIRA", "ORISA", "PHARAH", "RAMATTRA",
-  "REAPER", "REINHARDT", "ROADHOG", "SIGMA", "SOJOURN", "SOLDIER76", "SOMBRA", "SYMMETRA",
-  "TORBJORN", "TRACER", "VENTURE", "WIDOWMAKER", "WINSTON", "WRECKINGBALL", "ZARYA", "ZENYATTA"
+    "Brimstone",
+    "Viper",
+    "Omen",
+    "Killjoy",
+    "Cypher",
+    "Sova",
+    "Sage",
+    "Phoenix",
+    "Jett",
+    "Reyna",
+    "Raze",
+    "Breach",
+    "Skye",
+    "Yoru",
+    "Astra",
+    "KAYO",
+    "Chamber",
+    "Neon",
+    "Fade",
+    "Harbor",
+    "Gekko",
+    "Deadlock",
+    "Iso",
+    "Clove"
 ];
+
+
+const maps = [
+    "Undecided",
+    "Bind",
+    "Haven",
+    "Split",
+    "Ascent",
+    "Icebox",
+    "Breeze",
+    "Fracture",
+    "Pearl",
+    "Lotus",
+    "Sunset"
+];
+
+
+document.querySelectorAll(".maps").forEach(select => {
+  maps.forEach(map => {
+    const option = new Option(map, map);
+    select.add(option);
+  });
+});
 
 // Populate select options for all players
 document.querySelectorAll(".js-example-basic-single").forEach(select => {
@@ -201,43 +733,109 @@ document.querySelectorAll(".js-example-basic-single").forEach(select => {
 
 // Initialize Select2 for all select elements with the class 'js-example-basic-single'
 $('.js-example-basic-single').select2();
+$('.maps').select2();
 
-function resetForm() {
-  document.querySelectorAll('input[type="text"]').forEach(input => {
+function resetForm(button) {
+  // Traverse DOM to find the parent section of the reset button
+  var section = button.closest('.content');
+
+  // Find form elements within the section and reset them
+  section.querySelectorAll('input[type="text"]').forEach(input => {
     input.value = ''; // Clear input fields
   });
-  document.querySelectorAll('select').forEach(select => {
+  section.querySelectorAll('select').forEach(select => {
     select.value = ''; // Reset select boxes
     $(select).trigger('change.select2'); // Trigger change event for Select2
   });
 }
 
+function swap(button) {
+  for (let i = 1; i <= 5; i++) {
+      // Swap hero names
+      let t1Hero = localStorage.getItem(`valr1roster_player${i}`);
+      let t2Hero = localStorage.getItem(`valr2roster_player${i + 5}`);
+      localStorage.setItem(`valr1roster_player${i}`, t2Hero);
+      localStorage.setItem(`valr2roster_player${i + 5}`, t1Hero);
+
+      // Swap player names
+      let t1Name = localStorage.getItem(`valr1roster_player${i}_name`);
+      let t2Name = localStorage.getItem(`valr2roster_player${i + 5}_name`);
+      localStorage.setItem(`valr1roster_player${i}_name`, t2Name);
+      localStorage.setItem(`valr2roster_player${i + 5}_name`, t1Name);
+
+      // Swap logos (if necessary)
+      let t1Logo = localStorage.getItem('t1_logo');
+      let t2Logo = localStorage.getItem('t2_logo');
+      localStorage.setItem('t1_logo', t2Logo);
+      localStorage.setItem('t2_logo', t1Logo);
+    }
+      let t1 = localStorage.getItem('t1_name');
+      let t2 = localStorage.getItem('t2_name');
+      localStorage.setItem('t1_name', t2);
+      localStorage.setItem('t2_name', t1);
+
+    // Swap scores (assuming it's a best-of series)
+    for (let i = 1; i <= 5; i++) {
+      // Swap scores for each map
+      let t1MapScore = localStorage.getItem(`valbo5m${i}_team1_map${i}_score`);
+      let t2MapScore = localStorage.getItem(`valbo5m${i}_team2_map${i}_score`);
+      localStorage.setItem(`valbo5m${i}_team1_map${i}_score`, t2MapScore);
+      localStorage.setItem(`valbo5m${i}_team2_map${i}_score`, t1MapScore);
+    }
+    for (let i = 1; i <= 3; i++) {
+      // Swap scores for each map
+      let t1MapScore = localStorage.getItem(`valbo3m${i}_team1_map${i}_score`);
+      let t2MapScore = localStorage.getItem(`valbo3m${i}_team2_map${i}_score`);
+      localStorage.setItem(`valbo3m${i}_team1_map${i}_score`, t2MapScore);
+      localStorage.setItem(`valbo3m${i}_team2_map${i}_score`, t1MapScore);
+    }
+}
+
+
 function saveData(formName, event) {
-    event.preventDefault(); // Prevent the form from submitting
-
-    // Get the form element
-    var form = document.forms[formName];
-
-    // Loop through each select element inside the form
-    var selects = form.querySelectorAll('select');
-    selects.forEach(function(select) {
-      // Get the name of the select element
-      var selectName = select.getAttribute('name');
-      // Get the selected value of the select element
-      var selectedValue = select.value;
-      // Save the selected value in local storage
-      localStorage.setItem(selectName, selectedValue);
-    });
-
-    // Optionally, you can also save the player names if needed
-    // For example:
-    var playerNames = form.querySelectorAll('input[type="text"]');
-    playerNames.forEach(function(input) {
-      localStorage.setItem(input.getAttribute('name'), input.value);
-    });
-
-    // Optionally, you can redirect to another page or perform any other action
+  event.preventDefault(); // Prevent the form from submitting
+  var imagePath;
+  var vs = document.getElementById('vs-choice').value;
+  if (vs === "choice1") {
+      imagePath = "assets\\casters_and_interviews\\casters_vs_2.png";
+  } else {
+      imagePath = "assets\\casters_and_interviews\\casters_vs_1.png";
   }
+  localStorage.setItem('vsImagePath', imagePath); // Store the file path
+
+  // Get the form element
+  var form = document.forms[formName];
+
+  // Get the ID of the form
+  var formId = form.getAttribute('id');
+
+  // Loop through each select element inside the form
+  var selects = form.querySelectorAll('select');
+  selects.forEach(function(select) {
+    // Get the name of the select element
+    var selectName = select.getAttribute('name');
+    // Get the selected value of the select element
+    var selectedValue = select.value;
+    // Save the selected value in local storage with the form ID as the key
+    localStorage.setItem(formId + '_' + selectName, selectedValue);
+    
+
+  });
+
+  // Optionally, you can also save the player names if needed
+  // For example:
+  var playerNames = form.querySelectorAll('input[type="text"]');
+  playerNames.forEach(function(input) {
+    // Get the name of the input element
+    var inputName = input.getAttribute('name');
+    // Save the input value in local storage with the form ID as the key
+    localStorage.setItem(formId + '_' + inputName, input.value);
+  });
+  // Optionally, you can redirect to another page or perform any other action
+
+  
+}
+
 
 </script>
 

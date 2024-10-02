@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="styles.css" rel="stylesheet" />
+  </head>
+  <style>
+    .bname{
+        font-size: 32px;
+        position: absolute;
+        height: 49px;
+        width: 210px;
+        z-index: 2;
+        display: flex;
+        justify-content: space-evenly;
+    }
+
+    .blogo{
+        width: 105px;
+        height: 105px;
+        position: absolute;
+        z-index: 2;
+    }
+
+    .bdate{
+        position: absolute;
+        width: 75px;
+        height: 38px;
+        left: 435px;
+        z-index: 2;
+        font-size: 24px;
+        overflow-wrap: anywhere;
+    }
+
+    #b1t1n{
+        top: 439.4px;
+        left: 175.5px;
+    }
+    #b1t2n{
+        top: 439.4px;
+        left: 548.5px;
+    }
+
+    #b2t1n{
+        top: 667.45px;
+        left: 175.5px;
+    }
+    #b2t2n{
+        top: 667.45px;
+        left: 548.5px;
+    }
+
+    #b3t1n{
+        top: 895.6px;
+        left: 175.5px;
+    }
+    #b3t2n{
+        top: 895.6px;
+        left: 548.5px;
+    }
+    
+
+    #b1t1l{
+        top:328px;
+        left: 228px;
+    }
+    #b1t2l{
+        top:328px;
+        left: 601px;
+    }
+    #b2t1l{
+        top: 556px;
+        left: 228px;
+    }
+    #b2t2l{
+        top: 556px;
+        left: 601px;
+    }
+    
+    #b3t1l{
+        top: 784px;
+        left: 228px;
+    }
+    #b3t2l{
+        top: 784px;
+        left: 601px;
+    }
+    .games{
+        width: 90px;
+        position: absolute;
+        height: 38px;
+        left: 103px;
+        z-index: 2;
+    }
+
+    .bformat{
+        left: 790px;
+        position: absolute;
+        height: 38px;
+        width: 27px;
+        z-index: 2;
+    }
+
+    .gray-out{
+        filter: grayscale(100%);
+        opacity: 40%;
+    }
+  </style>
+  <body>
+    <!-- Container for stacking -->
+    <div class="stack-container">
+      <div style="color: white">
+        <img class="stacked-image" src="assets\break\starting_displaybox.png">
+        
+        <div class="druk-wide-bold" id="break-title" style="position: absolute; width: 762px; height: 24px; top: 244px; left: 86px; font-size: 20px; color: white; text-align: left;"></div>
+        
+        <img class="stacked-image" style="position: absolute; top: 306px; left: 86px;" id="g1">
+        <div id="b1t1n" class="bname druk-medium"></div>
+        <div id="b1t2n" class="bname druk-medium"></div>
+        <div id="b1date" class="bdate druk-bold" style="top:430px"></div>
+        <div id="b1score" class="druk-bold" style="top:350px; font-size: 64px; z-index: 2; position: absolute; left: 428px; width: 90px;"></div>
+        <img id="b1t1l" class= "blogo">
+        <img id="b1t2l" class= "blogo" >
+
+        <img class="stacked-image" style="position: absolute; top: 534.15px; left: 86px;" id="g2">
+        <div id="b2t1n" class="bname druk-medium"></div>
+        <div id="b2t2n" class="bname druk-medium"></div>
+        <div id="b2date"class="bdate druk-bold"style="top:653.73px"></div>
+        <div id="b2score" class="druk-bold" style="top:573.73px; font-size: 64px; z-index: 2; position: absolute; left: 428px; width: 90px;"></div>
+        <img id="b2t1l" class= "blogo">
+        <img id="b2t2l" class= "blogo">
+
+        <img class="stacked-image" style="position: absolute; top: 762.3px; left: 86px;" id="g3">
+        <div id="b3t1n" class="bname druk-medium"></div>
+        <div id="b3t2n" class="bname druk-medium"></div>
+        <div id="b3date"class="bdate druk-bold" style="top:886px"></div>
+        <div id="b3score" class="druk-bold" style="top:806px; font-size: 64px; z-index: 2; position: absolute; left: 428px; width: 90px;"></div>
+        <img id="b3t1l" class= "blogo">
+        <img id="b3t2l" class= "blogo">
+
+        <div id="game1" class="druk-bold games" style="top: 379px;">Game 1</div>
+        <div id="game2" class="druk-bold games" style="top: 607px;">Game 2</div>
+        <div id="game3" class="druk-bold games" style="top: 835px;">Game 3</div>
+
+        <div id="f1" class="druk-bold bformat" style="top: 379px;"></div>
+        <div id="f2" class="druk-bold bformat" style="top: 607px;"></div>
+        <div id="f3" class="druk-bold bformat" style="top: 835px;"></div>
+    </div>
+    <script>
+        function getTeams(){
+            // Array of variable names
+            const variableNames = [
+                'b3_score', 'b1_format', 'b2_date', 'b1_logo1', 'b1_date', 'b1_logo2', 'b1_score1', 'b1_score2', 'b2_score1', 'b2_score2','b2_name1','b3_score1', 'b3_score2',
+                'b2_format', 'b1_status', 'b2_name2', 'b3_name2', 'b2_score', 'b3_format', 'b2_logo1', 'b3_logo1',
+                'b3_date', 'b1_name1', 'b1_name2', 'b3_status', 'b3_logo2', 'b2_status', 'b2_logo2', 'b3_name1'
+            ];
+
+            // Object to store values fetched from local storage
+            const localStorageValues = {};
+
+            // Loop through variable names and fetch values from local storage
+            variableNames.forEach(name => {
+                const value = localStorage.getItem(name);
+                localStorageValues[name] = value;
+            });
+
+            document.getElementById('break-title').innerHTML = localStorage.getItem('stream_title');
+            const divIDs = ['b1', 'b2', 'b3'];
+            divIDs.forEach(id => {
+            document.getElementById(`${id}t1n`).innerHTML = localStorageValues[`${id}_name1`];
+            document.getElementById(`${id}t2n`).innerHTML = localStorageValues[`${id}_name2`];
+            document.getElementById(`${id}date`).innerHTML = localStorageValues[`${id}_date`];
+            document.getElementById(`${id}t1l`).src = localStorageValues[`${id}_logo1`];
+            document.getElementById(`${id}t2l`).src = localStorageValues[`${id}_logo2`];
+            });
+
+            document.getElementById('f1').innerHTML = localStorageValues['b1_format'];
+            document.getElementById('f2').innerHTML = localStorageValues['b2_format'];
+            document.getElementById('f3').innerHTML = localStorageValues['b3_format'];
+
+            if(localStorageValues['b1_status'] == 'done'){
+                if(parseInt(localStorageValues['b1_score1']) > parseInt(localStorageValues['b1_score2'])){
+                    document.getElementById('g1').src = 'assets\\break\\startingsoon_blue.png';
+                    document.getElementById('b1t2l').classList.add('gray-out');
+                    document.getElementById('b1t1l').classList.remove('gray-out');
+                    document.getElementById('b1score').innerHTML = localStorageValues['b1_score1'] + " - " + localStorageValues['b1_score2'];
+                }else{
+                    document.getElementById('g1').src = 'assets\\break\\startingsoon_red.png';
+                    document.getElementById('b1t1l').classList.add('gray-out');
+                    document.getElementById('b1t2l').classList.remove('gray-out');
+                    document.getElementById('b1score').innerHTML = localStorageValues['b1_score1'] + " - " + localStorageValues['b1_score2'];
+                }
+            } else{
+                document.getElementById('g1').src = 'assets\\break\\startingsoon_vs.png';
+                document.getElementById('b1t1l').classList.remove('gray-out');
+                document.getElementById('b1t2l').classList.remove('gray-out');
+                document.getElementById('b1score').innerHTML = "";
+            }
+            
+            if(localStorageValues['b2_status'] == 'done'){
+                if(parseInt(localStorageValues['b2_score1']) > parseInt(localStorageValues['b2_score2'])){
+                    document.getElementById('g2').src = 'assets\\break\\startingsoon_blue.png';
+                    document.getElementById('b2t2l').classList.add('gray-out');
+                    document.getElementById('b2t1l').classList.remove('gray-out');
+                    document.getElementById('b2score').innerHTML = localStorageValues['b2_score1'] + " - " + localStorageValues['b2_score2'];
+                }else{
+                    document.getElementById('g2').src = 'assets\\break\\startingsoon_red.png';
+                    document.getElementById('b2t1l').classList.add('gray-out');
+                    document.getElementById('b2t2l').classList.remove('gray-out');
+                    document.getElementById('b2score').innerHTML = localStorageValues['b2_score1'] + " - " + localStorageValues['b2_score2'];
+                }
+            } else{
+                document.getElementById('g2').src = 'assets\\break\\startingsoon_vs.png';
+                document.getElementById('b2t1l').classList.remove('gray-out');
+                document.getElementById('b2t2l').classList.remove('gray-out');
+                document.getElementById('b2score').innerHTML = "";
+            }
+
+            if(localStorageValues['b3_status'] == 'done'){
+                if(parseInt(localStorageValues['b3_score1']) > parseInt(localStorageValues['b3_score2'])){
+                    document.getElementById('g3').src = 'assets\\break\\startingsoon_blue.png';
+                    document.getElementById('b3t2l').classList.add('gray-out');
+                    document.getElementById('b3t1l').classList.remove('gray-out');
+                    document.getElementById('b3score').innerHTML = localStorageValues['b3_score1'] + " - " + localStorageValues['b3_score2'];
+                }else{
+                    document.getElementById('g3').src = 'assets\\break\\startingsoon_red.png';
+                    document.getElementById('b3t1l').classList.add('gray-out');
+                    document.getElementById('b3t2l').classList.remove('gray-out');
+                    document.getElementById('b3score').innerHTML = localStorageValues['b3_score1'] + " - " + localStorageValues['b3_score2'];
+                }
+            }else{
+                document.getElementById('g3').src = 'assets\\break\\startingsoon_vs.png';
+                document.getElementById('b3t2l').classList.remove('gray-out');
+                document.getElementById('b3t1l').classList.remove('gray-out');
+                document.getElementById('b3score').innerHTML = "";
+        }
+    }
+
+    setInterval(function(){
+        getTeams();
+    }, 1 * 1000)
+    </script>
+  </body>
+</html>

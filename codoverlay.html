@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+  <!-- Container for stacking -->
+<div class="stack-container">
+    <div style="color: white;">
+        
+        <img class="overlay-logo" id="overlay-logo-1" style="position:absolute; top:23px; left:55px; z-index: 2; height: 39px; width: 39px;">
+        <img class="overlay-logo" id="overlay-logo-2" style="position:absolute; top:23px; right:55px; z-index: 2; height: 39px; width: 39px;">
+
+        <div class="druk-wide-bold" id="overlay-name-1" style="font-size: 30px;  z-index: 2; width: 480px; height: 48px; top:19px; left: 107px; align-content: center; overflow-wrap: anywhere;"></div>
+        <div class="druk-wide-bold" id="overlay-name-2" style="font-size: 30px;  z-index: 2; width: 480px; height: 48px; top:19px; right: 107px; align-content: center; overflow-wrap: anywhere;"></div>
+        <div class="druk-wide-bold" id="overlay-score-1" style="font-size: 25px; z-index: 2; color: #1E1E1E; height: 48px; width: 48px; top: 18px; left: 605px; align-content: center;"></div>
+        <div class="druk-wide-bold" id="overlay-score-2" style="font-size: 25px; z-index: 2; color: #1E1E1E; height: 48px; width: 48px; top: 18px; right: 605px; align-content: center;"></div>
+
+        <img class="overlay-logo" id="overlay-logo-3" style="position:absolute; top:64px; right:739px; z-index: 2; height: 75px; width: 75px;">
+        <img class="overlay-logo" id="overlay-logo-4" style="position:absolute; top:64px; left:739px; z-index: 2; height: 75px; width: 75px;">
+        
+        <img class="stacked-image" src="assets\ingame_cod_main.png" style="z-index: 0;">
+    </div>
+
+    <script>
+    retrieveInfo();
+    // Retrieve form data from localStorage
+    function retrieveInfo(){
+        var t1name = localStorage.getItem('t1cod_name');
+        var name1 = document.getElementById('overlay-name-1');
+        name1.innerHTML = t1name;
+
+        var t2name = localStorage.getItem('t2cod_name');
+        var name2 = document.getElementById('overlay-name-2');
+        name2.innerHTML = t2name;
+
+        var t1logo = localStorage.getItem('t1cod_logo');
+        var logo1 = document.getElementById('overlay-logo-1');
+        logo1.src = t1logo;
+        document.getElementById('overlay-logo-3').src = t1logo;
+
+        var t2logo = localStorage.getItem('t2cod_logo');
+        var logo2 = document.getElementById('overlay-logo-2');
+        logo2.src = t2logo;
+        document.getElementById('overlay-logo-4').src = t2logo;
+
+   
+        var t1score = localStorage.getItem('t1cod_score');
+        var t2score = localStorage.getItem('t2cod_score');
+
+        document.getElementById('overlay-score-1').innerHTML = t1score;
+        document.getElementById('overlay-score-2').innerHTML = t2score;
+    }
+    setInterval(function(){
+        retrieveInfo();
+    }, 1 * 1000)
+    </script>
+</div>
+</body>
+
+</html>
